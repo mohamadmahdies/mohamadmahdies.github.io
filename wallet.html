@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>کیف پول | کتابچه هدیه</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #fff8f7;
+        --card: #ffffff;
+        --accent: #ea5458;
+        --accent-light: #fde8e9;
+        --text: #1f1a1b;
+        --muted: #6b5f60;
+        --border: #f0d7d8;
+        font-family: "Vazirmatn", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(150deg, #fff8f7 0%, #fde8e9 45%, #fff8f7 100%);
+        color: var(--text);
+        line-height: 1.6;
+        font-size: 16px;
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px clamp(20px, 4vw, 56px) 64px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .header h1 {
+        margin: 0;
+        color: var(--accent);
+        font-size: clamp(28px, 5vw, 36px);
+      }
+
+      .back-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+
+      .summary-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 32px;
+      }
+
+      .summary-card {
+        background: var(--card);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(234, 84, 88, 0.1);
+        border: 1px solid rgba(234, 84, 88, 0.1);
+      }
+
+      .summary-card.purple {
+        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        color: #fff;
+      }
+
+      .summary-card-title {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 12px;
+      }
+
+      .summary-card-amount {
+        font-size: 24px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 24px;
+        border-bottom: 2px solid var(--border);
+      }
+
+      .tab {
+        padding: 12px 24px;
+        background: none;
+        border: none;
+        border-bottom: 3px solid transparent;
+        color: var(--muted);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+        font-size: 15px;
+      }
+
+      .tab.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: 24px;
+        padding: 32px;
+        box-shadow: 0 18px 45px rgba(234, 84, 88, 0.12);
+        border: 1px solid rgba(234, 84, 88, 0.08);
+      }
+
+      .card h2 {
+        margin: 0 0 24px;
+        color: var(--accent);
+        font-size: 22px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        font-size: 15px;
+        font-family: inherit;
+        background: #fbfbff;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(234, 84, 88, 0.14);
+      }
+
+      .btn {
+        padding: 14px 28px;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), #c63e42);
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(234, 84, 88, 0.25);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 35px rgba(234, 84, 88, 0.3);
+      }
+
+      .btn-secondary {
+        background: #fff7f7;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+      }
+
+      .btn-secondary:hover {
+        background: var(--accent-light);
+      }
+
+      .wallets-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 24px;
+      }
+
+      .wallet-card {
+        background: var(--card);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(234, 84, 88, 0.1);
+        border: 1px solid rgba(234, 84, 88, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .wallet-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .wallet-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--accent-light);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+      }
+
+      .wallet-name {
+        font-weight: 600;
+        font-size: 18px;
+        margin: 0;
+      }
+
+      .wallet-balance {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--accent);
+        margin: 0;
+      }
+
+      .wallet-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: auto;
+      }
+
+      .wallet-actions button {
+        flex: 1;
+        padding: 10px;
+        font-size: 13px;
+      }
+
+      .transaction-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .transaction-item {
+        background: #fbfbff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .transaction-info {
+        flex: 1;
+      }
+
+      .transaction-title {
+        font-weight: 600;
+        margin: 0 0 4px;
+      }
+
+      .transaction-date {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .transaction-amount {
+        font-weight: 700;
+        font-size: 18px;
+      }
+
+      .transaction-amount.positive {
+        color: #10b981;
+      }
+
+      .transaction-amount.negative {
+        color: var(--accent);
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 48px 24px;
+        color: var(--muted);
+      }
+
+      .empty-state-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="header">
+        <h1>💰 کیف پول</h1>
+        <a href="#" class="back-link" id="backLink">← بازگشت</a>
+      </div>
+
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="summary-card-title">تعداد کیف پول فعال</div>
+          <p class="summary-card-amount" id="activeWalletsCount">0 کیف پول</p>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card-title">در انتظار تأیید</div>
+          <p class="summary-card-amount" id="pendingAmount">0 تومان</p>
+        </div>
+        <div class="summary-card purple">
+          <div class="summary-card-title">کل موجودی کیف پولها</div>
+          <p class="summary-card-amount" id="totalBalance">0 تومان</p>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('wallets')">کیف پولها</button>
+        <button class="tab" onclick="switchTab('charge')">شارژ کیف پول</button>
+        <button class="tab" onclick="switchTab('history')">تاریخچه</button>
+      </div>
+
+      <!-- Wallets Tab -->
+      <div id="walletsTab" class="tab-content active">
+        <div class="card">
+          <h2>کیف پولها</h2>
+          <div class="wallets-grid" id="walletsGrid">
+            <!-- Wallets will be dynamically generated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Charge Tab -->
+      <div id="chargeTab" class="tab-content">
+        <div class="card">
+          <h2>شارژ کیف پول</h2>
+          <form id="chargeForm">
+            <div class="form-group">
+              <label>انتخاب کیف پول</label>
+              <select id="chargeWalletSelect" required>
+                <option value="">انتخاب کنید...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>مبلغ شارژ (تومان)</label>
+              <input type="number" id="chargeAmount" required min="1" placeholder="مثلاً: 100000" />
+            </div>
+            <button type="submit" class="btn btn-primary">شارژ کیف پول</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- History Tab -->
+      <div id="historyTab" class="tab-content">
+        <div class="card">
+          <h2>تاریخچه تراکنش‌ها</h2>
+          <div class="transaction-list" id="transactionList">
+            <!-- Transactions will be dynamically generated -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./people-config.js"></script>
+    <script>
+      const WALLET_STORAGE_KEY = 'walletData';
+      const TRANSACTION_STORAGE_KEY = 'walletTransactions';
+
+      // Get person from URL
+      function getPersonFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('person');
+      }
+
+      function getPersonIdFromUsername(username) {
+        if (!username) return null;
+        try {
+          const usernames = JSON.parse(localStorage.getItem('gift-template-usernames') || '{}');
+          return usernames[username.toLowerCase()] || null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function getCurrentPerson() {
+        const personParam = getPersonFromURL();
+        if (!personParam) return null;
+        
+        if (PEOPLE_DATA[personParam]) {
+          return PEOPLE_DATA[personParam];
+        }
+        
+        const personId = getPersonIdFromUsername(personParam);
+        if (personId && PEOPLE_DATA[personId]) {
+          return PEOPLE_DATA[personId];
+        }
+        
+        return null;
+      }
+
+      function formatPrice(amount) {
+        return amount.toLocaleString('fa-IR');
+      }
+
+      function getWalletData() {
+        try {
+          return JSON.parse(localStorage.getItem(WALLET_STORAGE_KEY) || '{}');
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveWalletData(data) {
+        localStorage.setItem(WALLET_STORAGE_KEY, JSON.stringify(data));
+      }
+
+      function getTransactions() {
+        try {
+          return JSON.parse(localStorage.getItem(TRANSACTION_STORAGE_KEY) || '[]');
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function addTransaction(transaction) {
+        const transactions = getTransactions();
+        transactions.unshift({
+          ...transaction,
+          id: Date.now().toString(),
+          timestamp: new Date().toISOString()
+        });
+        localStorage.setItem(TRANSACTION_STORAGE_KEY, JSON.stringify(transactions));
+      }
+
+      function switchTab(tabName) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        
+        event.target.classList.add('active');
+        document.getElementById(tabName + 'Tab').classList.add('active');
+      }
+
+      function renderWallets() {
+        const walletsData = getWalletData();
+        const person = getCurrentPerson();
+        const personId = getPersonIdFromUsername(getPersonFromURL()) || getPersonFromURL();
+        
+        // Initialize wallets for current person if not exists
+        if (!walletsData[personId]) {
+          walletsData[personId] = {
+            wallets: [
+              { id: 'main', name: person?.name || 'اصلی', balance: 0 }
+            ]
+          };
+          saveWalletData(walletsData);
+        }
+
+        const personWallets = walletsData[personId].wallets || [];
+        const walletsGrid = document.getElementById('walletsGrid');
+        
+        if (personWallets.length === 0) {
+          walletsGrid.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-state-icon">💼</div>
+              <p>هنوز کیف پولی ایجاد نشده است</p>
+            </div>
+          `;
+          return;
+        }
+
+        walletsGrid.innerHTML = personWallets.map(wallet => `
+          <div class="wallet-card">
+            <div class="wallet-header">
+              <div class="wallet-icon">💼</div>
+              <h3 class="wallet-name">${wallet.name}</h3>
+            </div>
+            <p class="wallet-balance">${formatPrice(wallet.balance)} تومان</p>
+            <div class="wallet-actions">
+              <button class="btn btn-secondary" onclick="transferFromWallet('${wallet.id}')">انتقال</button>
+              <button class="btn btn-primary" onclick="chargeWallet('${wallet.id}')">شارژ</button>
+            </div>
+          </div>
+        `).join('');
+
+        updateSummary();
+        updateChargeSelect();
+      }
+
+      function updateSummary() {
+        const walletsData = getWalletData();
+        const personId = getPersonIdFromUsername(getPersonFromURL()) || getPersonFromURL();
+        const personWallets = walletsData[personId]?.wallets || [];
+        
+        const totalBalance = personWallets.reduce((sum, w) => sum + (w.balance || 0), 0);
+        const pendingTransactions = getTransactions().filter(t => 
+          t.personId === personId && t.status === 'pending'
+        );
+        const pendingAmount = pendingTransactions.reduce((sum, t) => sum + (t.amount || 0), 0);
+
+        document.getElementById('activeWalletsCount').textContent = `${personWallets.length} کیف پول`;
+        document.getElementById('pendingAmount').textContent = `${formatPrice(pendingAmount)} تومان`;
+        document.getElementById('totalBalance').textContent = `${formatPrice(totalBalance)} تومان`;
+      }
+
+      function updateChargeSelect() {
+        const walletsData = getWalletData();
+        const personId = getPersonIdFromUsername(getPersonFromURL()) || getPersonFromURL();
+        const personWallets = walletsData[personId]?.wallets || [];
+        const select = document.getElementById('chargeWalletSelect');
+        
+        select.innerHTML = '<option value="">انتخاب کنید...</option>' +
+          personWallets.map(w => `<option value="${w.id}">${w.name}</option>`).join('');
+      }
+
+      function chargeWallet(walletId) {
+        document.getElementById('chargeWalletSelect').value = walletId;
+        switchTab('charge');
+        document.querySelector('.tab[onclick*="charge"]').click();
+      }
+
+      function transferFromWallet(walletId) {
+        const walletsData = getWalletData();
+        const personId = getPersonIdFromUsername(getPersonFromURL()) || getPersonFromURL();
+        const wallet = walletsData[personId]?.wallets?.find(w => w.id === walletId);
+        
+        if (!wallet || wallet.balance === 0) {
+          alert('موجودی کیف پول کافی نیست');
+          return;
+        }
+
+        const amount = prompt(`مبلغ انتقال از کیف پول "${wallet.name}" (موجودی: ${formatPrice(wallet.balance)} تومان):`, '');
+        if (!amount) return;
+
+        const transferAmount = parseInt(amount);
+        if (isNaN(transferAmount) || transferAmount <= 0) {
+          alert('مبلغ معتبری وارد کنید');
+          return;
+        }
+
+        if (transferAmount > wallet.balance) {
+          alert('مبلغ نمی‌تواند بیشتر از موجودی باشد');
+          return;
+        }
+
+        const recipient = prompt('نام گیرنده یا شناسه کیف پول:', '');
+        if (!recipient) return;
+
+        // Deduct from wallet
+        wallet.balance -= transferAmount;
+        saveWalletData(walletsData);
+
+        // Add transaction
+        addTransaction({
+          type: 'transfer',
+          personId: personId,
+          walletId: walletId,
+          amount: -transferAmount,
+          recipient: recipient,
+          description: `انتقال به ${recipient}`,
+          status: 'completed'
+        });
+
+        alert(`مبلغ ${formatPrice(transferAmount)} تومان با موفقیت انتقال یافت`);
+        renderWallets();
+        renderTransactions();
+      }
+
+      function renderTransactions() {
+        const transactions = getTransactions();
+        const personId = getPersonIdFromUsername(getPersonFromURL()) || getPersonFromURL();
+        const personTransactions = transactions.filter(t => t.personId === personId);
+        const transactionList = document.getElementById('transactionList');
+
+        if (personTransactions.length === 0) {
+          transactionList.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-state-icon">📋</div>
+              <p>هنوز تراکنشی ثبت نشده است</p>
+            </div>
+          `;
+          return;
+        }
+
+        transactionList.innerHTML = personTransactions.map(t => {
+          const date = new Date(t.timestamp);
+          const dateStr = date.toLocaleDateString('fa-IR', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+          
+          return `
+            <div class="transaction-item">
+              <div class="transaction-info">
+                <p class="transaction-title">${t.description || 'تراکنش'}</p>
+                <p class="transaction-date">${dateStr}</p>
+              </div>
+              <div class="transaction-amount ${t.amount >= 0 ? 'positive' : 'negative'}">
+                ${t.amount >= 0 ? '+' : ''}${formatPrice(Math.abs(t.amount))} تومان
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Charge form submission
+      document.getElementById('chargeForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const walletId = document.getElementById('chargeWalletSelect').value;
+        const amount = parseInt(document.getElementById('chargeAmount').value);
+
+        if (!walletId || !amount || amount <= 0) {
+          alert('لطفاً اطلاعات را به درستی وارد کنید');
+          return;
+        }
+
+        const walletsData = getWalletData();
+        const personId = getPersonIdFromUsername(getPersonFromURL()) || getPersonFromURL();
+        const wallet = walletsData[personId]?.wallets?.find(w => w.id === walletId);
+
+        if (!wallet) {
+          alert('کیف پول یافت نشد');
+          return;
+        }
+
+        wallet.balance = (wallet.balance || 0) + amount;
+        saveWalletData(walletsData);
+
+        addTransaction({
+          type: 'charge',
+          personId: personId,
+          walletId: walletId,
+          amount: amount,
+          description: `شارژ کیف پول ${wallet.name}`,
+          status: 'completed'
+        });
+
+        alert(`مبلغ ${formatPrice(amount)} تومان با موفقیت به کیف پول "${wallet.name}" اضافه شد`);
+        document.getElementById('chargeForm').reset();
+        renderWallets();
+        renderTransactions();
+      });
+
+      // Set back link
+      function setBackLink() {
+        const personParam = getPersonFromURL();
+        const backLink = document.getElementById('backLink');
+        if (personParam) {
+          backLink.href = `./index.html?person=${personParam}`;
+        } else {
+          backLink.href = './index.html';
+        }
+      }
+
+      // Initialize
+      setBackLink();
+      renderWallets();
+      renderTransactions();
+    </script>
+  </body>
+</html>
+
