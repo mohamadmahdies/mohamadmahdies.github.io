@@ -212,6 +212,33 @@
         color: var(--accent);
       }
 
+      .calendar-icon-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--accent-light);
+        color: var(--accent);
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border: 1px solid rgba(234, 84, 88, 0.2);
+        flex-shrink: 0;
+      }
+
+      .calendar-icon-link:hover {
+        background: var(--accent);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(234, 84, 88, 0.3);
+      }
+
+      .calendar-icon-link svg {
+        width: 20px;
+        height: 20px;
+      }
+
       .profile p {
         margin: 0 0 12px;
         color: var(--muted);
@@ -637,7 +664,17 @@
           alt="تصویر پروفایل"
         />
         <div class="profile">
-          <h1 id="profileTitle">کتابچه هدیه</h1>
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <h1 id="profileTitle" style="margin: 0 0 12px;">کتابچه هدیه</h1>
+            <a href="#" id="calendarIconLink" class="calendar-icon-link" title="مشاهده تقویم">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </a>
+          </div>
           <p id="profileBio"></p>
           <p id="profileDescription">
             در حال بارگذاری...
@@ -753,6 +790,14 @@
         document.getElementById('profileImage').alt = `تصویر پروفایل ${person.name}`;
         document.getElementById('profileTitle').textContent = `کتابچه هدیه ${person.name}`;
         document.getElementById('profileDescription').textContent = UNIVERSAL_DESCRIPTION;
+        
+        // Set calendar icon link
+        const personParam = getPersonFromURL();
+        const calendarIconLink = document.getElementById('calendarIconLink');
+        if (calendarIconLink && personParam) {
+          calendarIconLink.href = `./calendar.html?person=${personParam}`;
+        }
+        
         const bioElement = document.getElementById('profileBio');
         if (person.bio || person.description) {
           bioElement.textContent = person.bio || person.description;
