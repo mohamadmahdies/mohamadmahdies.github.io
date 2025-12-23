@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="pageTitle">کتابچه هدیه</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #fff8f7;
+        --card: #ffffff;
+        --accent: #ea5458;
+        --accent-light: #fde8e9;
+        --text: #1f1a1b;
+        --muted: #6b5f60;
+        --border: #f0d7d8;
+        font-family: "Vazirmatn", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(150deg, #fff8f7 0%, #fde8e9 45%, #fff8f7 100%);
+        color: var(--text);
+        line-height: 1.6;
+        font-size: 16px;
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px clamp(20px, 4vw, 56px) 64px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .home {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 56px clamp(20px, 4vw, 56px) 96px;
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+      }
+
+      .hero {
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 28px;
+        padding: clamp(32px, 6vw, 56px);
+        box-shadow: 0 30px 80px rgba(234, 84, 88, 0.14);
+        border: 1px solid rgba(234, 84, 88, 0.12);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 32px;
+        align-items: center;
+      }
+
+      .hero h1 {
+        margin: 0 0 16px;
+        font-size: clamp(32px, 6vw, 44px);
+        color: var(--accent);
+      }
+
+      .tagline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--accent-light);
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+
+      .hero p {
+        margin: 0 0 24px;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero-cta a {
+        border-radius: 999px;
+        padding: 14px 32px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .hero-cta a.primary {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 12px 30px rgba(61, 90, 128, 0.25);
+      }
+
+      .hero-cta a.secondary {
+        border: 1px solid var(--accent);
+        color: var(--accent);
+      }
+
+      .hero-visual {
+        background: linear-gradient(145deg, #ea5458, #c63e42);
+        color: #fff;
+        border-radius: 28px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .hero-visual span {
+        opacity: 0.9;
+        font-size: 15px;
+      }
+
+      .hero-visual p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 18px;
+        line-height: 1.8;
+      }
+
+      .features,
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+      }
+
+      .feature-card,
+      .step-card {
+        background: var(--card);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: 0 20px 50px rgba(234, 84, 88, 0.08);
+        border: 1px solid rgba(234, 84, 88, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .feature-card strong,
+      .step-card strong {
+        font-size: 18px;
+      }
+
+      .feature-card p,
+      .step-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      header {
+        background: var(--card);
+        padding: clamp(24px, 5vw, 40px);
+        border-radius: 28px;
+        display: grid;
+        grid-template-columns: minmax(220px, 320px) 1fr;
+        gap: 32px;
+        align-items: center;
+        box-shadow: 0 25px 65px rgba(234, 84, 88, 0.12);
+        border: 1px solid rgba(234, 84, 88, 0.12);
+      }
+
+      header img {
+        width: 100%;
+        border-radius: 22px;
+        object-fit: cover;
+        aspect-ratio: 3 / 4;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      header img:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
+      }
+
+      .profile h1 {
+        margin: 0 0 12px;
+        font-size: clamp(26px, 5vw, 36px);
+        color: var(--accent);
+      }
+
+      .profile p {
+        margin: 0 0 12px;
+        color: var(--muted);
+      }
+
+      #profileBio {
+        color: var(--text);
+        font-weight: 900;
+        display: none;
+      }
+      #profileDescription {
+        font-size: small;
+        color: rgba(0, 0, 0, .4);
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .tags span {
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--accent-light);
+        color: var(--accent);
+        font-size: 14px;
+      }
+
+      .lists {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .list-card {
+        background: var(--card);
+        padding: clamp(20px, 4vw, 36px);
+        border-radius: 28px;
+        box-shadow: 0 18px 45px rgba(234, 84, 88, 0.12);
+        border: 1px solid rgba(234, 84, 88, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .ai-suggestions {
+        background: #f7f3ff;
+        border: 1px solid #e0d4ff;
+        box-shadow: 0 18px 45px rgba(91, 79, 216, 0.12);
+      }
+
+      .ai-pill {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #5b4fd8, #7c3aed);
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 800;
+        box-shadow: 0 10px 24px rgba(91, 79, 216, 0.35);
+        border: none;
+      }
+
+      .ai-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+      }
+
+      .ai-card {
+        background: #ffffff;
+        border: 1px solid #e4e4ff;
+        border-radius: 18px;
+        padding: 16px 18px;
+        display: grid;
+        gap: 8px;
+        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
+      }
+
+      .ai-card strong {
+        font-weight: 700;
+        color: #1f1a1b;
+      }
+
+      .ai-card small {
+        color: #6366f1;
+        font-size: 13px;
+      }
+
+      /* Override default red theme inside AI box */
+      .ai-suggestions .item-price {
+        color: #4c51bf;
+      }
+
+      .ai-suggestions .item-link a {
+        border-color: #5b4fd8;
+        color: #5b4fd8;
+        background: #f7f3ff;
+      }
+
+      .ai-suggestions .item-link a:hover {
+        background: #ebe7ff;
+      }
+
+      /* Stronger title spacing for AI section */
+      .ai-suggestions .list-header {
+        background: transparent;
+        padding: 0 0 16px;
+        margin: 0;
+      }
+
+      .ai-suggestions .list-title span {
+        color: #4c51bf;
+      }
+
+      .list-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .list-title {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .list-title h2 {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .list-title span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .counter {
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 10px 16px;
+        font-size: 14px;
+        color: var(--accent);
+      }
+
+      .items-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+      }
+
+      .item {
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 18px 20px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        cursor: pointer;
+        transition: border 0.2s ease, background 0.2s ease;
+        background: #fbfbff;
+      }
+
+      .item:hover {
+        border-color: var(--accent);
+        box-shadow: 0 10px 28px rgba(234, 84, 88, 0.12);
+      }
+
+      .item input {
+        width: 20px;
+        height: 20px;
+        accent-color: var(--accent);
+      }
+
+      .item-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .item-content strong {
+        font-weight: 600;
+      }
+
+      .item-content span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .item-price {
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 15px;
+        margin-top: 4px;
+      }
+
+      .item-link {
+        margin-top: 8px;
+      }
+
+      .group-purchase-section {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border);
+      }
+
+      .progress-bar-container {
+        background: #f0f0f0;
+        border-radius: 8px;
+        height: 8px;
+        overflow: hidden;
+        margin: 8px 0;
+      }
+
+      .progress-bar-fill {
+        background: linear-gradient(90deg, var(--accent), #c63e42);
+        height: 100%;
+        transition: width 0.3s ease;
+        border-radius: 8px;
+      }
+
+      .progress-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .progress-amount {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .contribute-btn {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 8px;
+        width: 100%;
+      }
+
+      .contribute-btn:hover {
+        background: #c63e42;
+        transform: translateY(-1px);
+      }
+
+      .wallet-link {
+        position: fixed;
+        bottom: 24px;
+        left: 24px;
+        background: linear-gradient(135deg, var(--accent), #c63e42);
+        color: #fff;
+        padding: 14px 24px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 8px 24px rgba(234, 84, 88, 0.3);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .wallet-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(234, 84, 88, 0.4);
+      }
+
+      .item-link a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 13px;
+        padding: 6px 12px;
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .item-link a:hover {
+        background: var(--accent-light);
+      }
+
+      .item.checked {
+        border-color: var(--accent);
+        background: var(--accent-light);
+      }
+
+      .item-static {
+        cursor: default;
+        pointer-events: none;
+      }
+
+      .profile-footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 14px;
+        margin-top: 12px;
+      }
+
+      .share {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 16px;
+      }
+
+      .share button {
+        border: none;
+        border-radius: 999px;
+        padding: 12px 28px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+      }
+
+      .share button:hover {
+        opacity: 0.9;
+      }
+
+      .share span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      @media (max-width: 820px) {
+        header {
+          grid-template-columns: 1fr;
+        }
+
+        header img {
+          max-height: 380px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="home" id="homePage" hidden>
+      <section class="hero">
+        <div>
+          <span class="tagline">کتابچه هدیه</span>
+          <h1>لیست هدیه سفارشی برای هر دوست</h1>
+          <p>
+            با کتابچه هدیه، هر دوست یا هم‌تیمی می‌تواند علایق و نیازهایش را در یک
+            صفحه آماده کند تا بقیه دقیق‌ترین هدیه را انتخاب کنند. تجربه‌ای ساده،
+            دقیق و به‌یادماندنی برای هدیه دادن.
+          </p>
+          <div class="hero-cta">
+            <a class="primary" href="mailto:hello@esmailiyan.com">درخواست نسخه تست</a>
+            <a class="secondary" href="#features">معرفی محصول</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <strong>یک صفحه شخصی برای هر فرد</strong>
+          <span> </span>
+          <p>
+            علایق، بودجه‌های پیشنهادی و لینک خرید اقلام محبوب را وارد کنید تا
+            دوستانتان همیشه بهترین انتخاب را داشته باشند.
+          </p>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <article class="feature-card">
+          <strong>پروفایل اختصاصی</strong>
+          <p>هر فرد آدرس یونیک خودش را دارد تا با دیگران به اشتراک بگذارد.</p>
+        </article>
+        <article class="feature-card">
+          <strong>چک‌لیست انتخاب هدیه</strong>
+          <p>مهمان‌ها آیتم انتخابی خود را تیک می‌زنند تا هدایا تکراری نشود.</p>
+        </article>
+        <article class="feature-card">
+          <strong>ذخیره‌سازی محلی</strong>
+          <p>انتخاب‌ها در مرورگر ذخیره می‌شود و به‌سادگی قابل بروزرسانی است.</p>
+        </article>
+      </section>
+
+      <section class="steps">
+        <article class="step-card">
+          <strong>۱. ساخت پروفایل</strong>
+          <p>ما به شما کمک می‌کنیم علایق، بودجه، و برندهای محبوب را وارد کنید.</p>
+        </article>
+        <article class="step-card">
+          <strong>۲. اشتراک با دوستان</strong>
+          <p>لینک را برای دوستان یا هم‌تیمی‌ها بفرستید تا لیست را ببینند.</p>
+        </article>
+        <article class="step-card">
+          <strong>۳. هدیه هوشمند</strong>
+          <p>مهمان‌ها موارد انتخابی را تیک می‌زنند تا تجربه هدیه دادن دلچسب شود.</p>
+        </article>
+      </section>
+    </main>
+
+    <main class="page" id="profilePage" hidden>
+      <header>
+        <img
+          id="profileImage"
+          src=""
+          alt="تصویر پروفایل"
+        />
+        <div class="profile">
+          <h1 id="profileTitle">کتابچه هدیه</h1>
+          <p id="profileBio"></p>
+          <p id="profileDescription">
+            در حال بارگذاری...
+          </p>
+          <div class="tags" id="profileTags">
+          </div>
+        </div>
+      </header>
+
+      <section class="lists" id="listsContainer">
+        <!-- Lists will be dynamically generated -->
+      </section>
+
+      <section class="list-card ai-suggestions" id="aiSuggestions" hidden>
+        <!-- AI suggestions will be injected here -->
+      </section>
+
+      <div class="share" id="profileShare" hidden>
+        <button type="button" id="copyLink">کپی لینک پروفایل</button>
+        <span id="shareStatus">آخرین بروزرسانی: —</span>
+      </div>
+
+      <footer class="profile-footer" id="profileFooter"></footer>
+
+      <a href="./wallet.html" class="wallet-link" id="walletLink" hidden>
+        <span>💰</span>
+        <span>کیف پول</span>
+      </a>
+
+    </main>
+
+    <!-- Contribute Modal -->
+    <div id="contributeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+      <div style="background: var(--card); border-radius: 24px; padding: 32px; max-width: 400px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+        <h2 style="margin: 0 0 16px; color: var(--accent);">مشارکت در خرید گروهی</h2>
+        <p id="contributeItemTitle" style="margin: 0 0 8px; font-weight: 600;"></p>
+        <p id="contributeItemInfo" style="margin: 0 0 24px; color: var(--muted); font-size: 14px;"></p>
+        <label style="display: block; margin-bottom: 8px; font-weight: 600;">مبلغ مشارکت (تومان)</label>
+        <input type="number" id="contributeAmount" style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 12px; font-size: 16px; margin-bottom: 16px;" min="1" />
+        <div style="display: flex; gap: 12px;">
+          <button onclick="closeContributeModal()" style="flex: 1; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: #fff; cursor: pointer; font-weight: 600;">انصراف</button>
+          <button onclick="submitContribution()" style="flex: 1; padding: 12px; border: none; border-radius: 12px; background: var(--accent); color: #fff; cursor: pointer; font-weight: 600;">پرداخت</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./people-config.js"></script>
+    <script>
+      const UNIVERSAL_DESCRIPTION = 'این فهرست برای دوستان و خانواده است تا با توجه به سلیقه، نیاز و بودجه‌ی من، هدیه‌ای دقیق و کاربردی انتخاب کنند. همه‌ی آیتم‌ها قابل بروزرسانی هستند و با تیک زدن، هدیه‌ی انتخابی خود را مشخص کنید.';
+
+
+      // Get person from URL parameter
+      function getPersonFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const person = params.get('person'); // This could be username or personId
+        return person;
+      }
+
+      // Get personId from username
+      function getPersonIdFromUsername(username) {
+        if (!username) return null;
+        try {
+          const usernames = JSON.parse(localStorage.getItem('gift-template-usernames') || '{}');
+          return usernames[username.toLowerCase()] || null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      // Get current person data
+      function getCurrentPerson() {
+        const personParam = getPersonFromURL();
+        if (!personParam) return null;
+        
+        // First try to get from PEOPLE_DATA directly (for existing personIds)
+        if (PEOPLE_DATA[personParam]) {
+          return PEOPLE_DATA[personParam];
+        }
+        
+        // If not found, try to get personId from username mapping
+        const personId = getPersonIdFromUsername(personParam);
+        if (personId && PEOPLE_DATA[personId]) {
+          return PEOPLE_DATA[personId];
+        }
+        
+        return null;
+      }
+
+      // Storage key for saving selections (person-specific)
+      function getStorageKey() {
+        const personParam = getPersonFromURL();
+        if (!personParam) return 'giftWishlistSelections_default';
+        
+        // Try to get personId from username mapping
+        const personId = getPersonIdFromUsername(personParam) || personParam;
+        return `giftWishlistSelections_${personId}`;
+      }
+
+      // Function to get or create user ID
+      function getUserId() {
+        let userId = localStorage.getItem('userId');
+        if (!userId) {
+          userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+          localStorage.setItem('userId', userId);
+        }
+        return userId;
+      }
+
+      // Render profile section
+      function renderProfile(person) {
+        document.getElementById('pageTitle').textContent = `کتابچه هدیه ${person.name}`;
+        document.getElementById('profileImage').src = person.image || 'https://wallpapers.com/images/featured/cute-aesthetic-profile-pictures-pjfl391j3q0f7rlz.jpg';
+        document.getElementById('profileImage').alt = `تصویر پروفایل ${person.name}`;
+        document.getElementById('profileTitle').textContent = `کتابچه هدیه ${person.name}`;
+        document.getElementById('profileDescription').textContent = UNIVERSAL_DESCRIPTION;
+        const bioElement = document.getElementById('profileBio');
+        if (person.bio || person.description) {
+          bioElement.textContent = person.bio || person.description;
+          bioElement.style.display = 'block';
+        } else {
+          bioElement.textContent = '';
+          bioElement.style.display = 'none';
+        }
+        
+        const tagsContainer = document.getElementById('profileTags');
+        tagsContainer.innerHTML = '';
+        (person.tags || []).forEach(tag => {
+          const span = document.createElement('span');
+          span.textContent = tag;
+          tagsContainer.appendChild(span);
+        });
+        const footer = document.getElementById('profileFooter');
+        if (footer) {
+          footer.textContent = person.footer || 'محبت شما ارزشمندترین هدیه است. ممنون از توجه‌تان.';
+        }
+        const shareContainer = document.getElementById('profileShare');
+        if (shareContainer) {
+          shareContainer.removeAttribute('hidden');
+        }
+        const shareStatus = document.getElementById('shareStatus');
+        if (shareStatus) {
+          shareStatus.textContent = `آخرین بروزرسانی: ${person.lastUpdate || '—'}`;
+        }
+      }
+
+      // Render lists
+      function renderLists(person) {
+        const container = document.getElementById('listsContainer');
+        container.innerHTML = '';
+        const personParam = getPersonFromURL();
+
+        Object.keys(person.lists).forEach(listKey => {
+          const list = person.lists[listKey];
+          const listCard = document.createElement('article');
+          listCard.className = 'list-card';
+          listCard.setAttribute('data-list', listKey);
+          const isSelectable = list.selectable !== false;
+
+          const itemsCount = list.items.length;
+          let itemsHTML = '';
+
+          list.items.forEach(item => {
+            const hasPrice = item.price !== undefined;
+            const hasLink = item.link !== undefined;
+            const itemTag = isSelectable ? 'label' : 'div';
+            const itemClasses = isSelectable ? 'item' : 'item item-static';
+            const dataAttr = isSelectable && item.value ? `data-product="${item.value}"` : '';
+            const checkboxHTML = isSelectable
+              ? `<input type="checkbox" value="${item.value || item.title}" />`
+              : '';
+
+            const hasPriority = item.priority && item.priority.trim() !== '';
+            const priorityPill = hasPriority ? `<span style="display: inline-block; background: #fff1f1; color: var(--accent); padding: 4px 10px; border-radius: 999px; font-size: 12px; margin-left: 6px;">اولویت: ${item.priority}</span>` : '';
+
+            // Get group purchase data
+            const itemId = item.value || item.title;
+            const purchaseData = getGroupPurchaseData(itemId, person);
+            const hasContributions = purchaseData.totalContributed > 0;
+            const priceNum = hasPrice ? parsePrice(item.price) : 0;
+            const progressPercent = priceNum > 0 ? Math.min((purchaseData.totalContributed / priceNum) * 100, 100) : 0;
+            const remainingAmount = Math.max(0, priceNum - purchaseData.totalContributed);
+
+            let groupPurchaseHTML = '';
+            if (hasPrice && priceNum > 0) {
+              const itemTitleEscaped = item.title.replace(/'/g, "\\'");
+              groupPurchaseHTML = `
+                <div class="group-purchase-section">
+                  ${hasContributions ? `
+                    <div class="progress-info">
+                      <span>جمع‌آوری شده: <span class="progress-amount">${formatPrice(purchaseData.totalContributed)} تومان</span></span>
+                      <span>${Math.round(progressPercent)}%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                      <div class="progress-bar-fill" style="width: ${progressPercent}%"></div>
+                    </div>
+                  ` : ''}
+                  <button class="contribute-btn" onclick="event.stopPropagation(); openContributeModal('${itemId}', '${itemTitleEscaped}', ${priceNum}, ${remainingAmount}, '${person.name || personParam || ''}')">
+                    ${hasContributions ? 'مشارکت در خرید' : 'شروع خرید گروهی'}
+                  </button>
+                </div>
+              `;
+            }
+
+            itemsHTML += `
+              <${itemTag} class="${itemClasses}" ${dataAttr}>
+                ${checkboxHTML}
+                <div class="item-content">
+                  <strong>${item.title}</strong>
+                  <span>${item.description}</span>
+                  ${priorityPill ? `<div style="margin-top: 6px;">${priorityPill}</div>` : ''}
+                  ${hasPrice ? `<div class="item-price">قیمت: ${item.price} تومان</div>` : ''}
+                  ${hasLink ? `<div class="item-link">
+                    <a href="${item.link}" target="_blank" onclick="event.stopPropagation()">
+                      ${item.linkText || 'مشاهده →'}
+                    </a>
+                  </div>` : ''}
+                  ${groupPurchaseHTML}
+                </div>
+              </${itemTag}>
+            `;
+          });
+
+          listCard.innerHTML = `
+            <div class="list-header">
+              <div class="list-title">
+                <h2>${list.title}</h2>
+                <span>${list.description}</span>
+              </div>
+              ${isSelectable ? `<div class="counter">
+                <strong>0</strong> / ${itemsCount} انتخاب شده
+              </div>` : ''}
+            </div>
+            <div class="items-grid">
+              ${itemsHTML}
+            </div>
+          `;
+
+          container.appendChild(listCard);
+        });
+
+        renderAISuggestions(person);
+      }
+
+      // Render AI-powered product suggestions
+      function renderAISuggestions(person) {
+        const aiSection = document.getElementById('aiSuggestions');
+        if (!aiSection) return;
+
+        const productsList = person?.lists?.products;
+        if (!productsList || !productsList.items || !productsList.items.length) {
+          aiSection.setAttribute('hidden', 'true');
+          aiSection.innerHTML = '';
+          return;
+        }
+
+        const stores = ['دیجی‌کالا', 'آمازون', 'کافه‌بازار', 'ایران‌مال', 'ترب'];
+        const aiItems = productsList.items.slice(0, 4).map((item, idx) => ({
+          title: item.title,
+          description: item.description || 'گزینه مشابه بر اساس سلیقه شما',
+          price: item.price || 'متغیر',
+          vendor: stores[idx % stores.length],
+          link: item.link || '#'
+        }));
+
+        const itemsHTML = aiItems.map((ai) => `
+          <div class="ai-card">
+            <strong>${ai.title}</strong>
+            <small>${ai.description}</small>
+            <div class="item-price">قیمت تخمینی: ${ai.price}</div>
+            <div class="item-link">
+              <a href="${ai.link}" target="_blank" onclick="event.stopPropagation()">
+                مشاهده در ${ai.vendor}
+              </a>
+            </div>
+          </div>
+        `).join('');
+
+        aiSection.innerHTML = `
+          <div class="list-header">
+            <div class="list-title">
+              <div class="ai-pill">پیشنهادهای هوشمند AI</div>
+              <span>کالاهای مشابه بر اساس علایق شما از فروشگاه‌های مختلف</span>
+            </div>
+          </div>
+          <div class="ai-grid">
+            ${itemsHTML}
+          </div>
+        `;
+        aiSection.removeAttribute('hidden');
+      }
+
+      function prepareWishlistDraft(person) {
+        if (!person || !person.lists || !person.lists.products) return null;
+        const profileDraft = {
+          fullName: `${person.name || ''} ${person.fullName || ''}`.trim(),
+          constraints: person.bio || person.description || ''
+        };
+
+        const itemsDraft = (person.lists.products.items || []).map((item, idx) => ({
+          id: `seed-${idx}-${Date.now()}`,
+          title: item.title || '',
+          category: item.category || '',
+          link: item.link || '',
+          budget: item.price || '',
+          priority: item.priority || 'مهم',
+          options: item.options || '',
+          notes: item.description || ''
+        }));
+
+        return { profile: profileDraft, items: itemsDraft };
+      }
+
+      // Function to load saved selections
+      function loadSelections() {
+        try {
+          const userId = getUserId();
+          const saved = localStorage.getItem(getStorageKey());
+          if (saved) {
+            const selections = JSON.parse(saved);
+            const userSelections = selections[userId] || {};
+            
+            document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+              const value = checkbox.value;
+              if (userSelections[value]) {
+                checkbox.checked = true;
+                const item = checkbox.closest('.item');
+                if (item) {
+                  item.classList.add('checked');
+                }
+              }
+            });
+          }
+        } catch (error) {
+          console.error('Error loading selections:', error);
+        }
+      }
+
+      // Function to save selections
+      function saveSelections() {
+        try {
+          const userId = getUserId();
+          const saved = localStorage.getItem(getStorageKey());
+          let selections = saved ? JSON.parse(saved) : {};
+          
+          const checkedItems = {};
+          document.querySelectorAll('input[type="checkbox"]:checked').forEach((checkbox) => {
+            checkedItems[checkbox.value] = true;
+          });
+          
+          selections[userId] = checkedItems;
+          selections[userId + '_timestamp'] = new Date().toISOString();
+          
+          localStorage.setItem(getStorageKey(), JSON.stringify(selections));
+        } catch (error) {
+          console.error('Error saving selections:', error);
+        }
+      }
+
+      // Initialize page
+      function initPage() {
+        const person = getCurrentPerson();
+        const profilePage = document.getElementById('profilePage');
+        const homePage = document.getElementById('homePage');
+        const shareContainer = document.getElementById('profileShare');
+
+        if (!person) {
+          if (profilePage) profilePage.setAttribute('hidden', 'true');
+          if (homePage) homePage.removeAttribute('hidden');
+          if (shareContainer) shareContainer.setAttribute('hidden', 'true');
+          return;
+        }
+
+        if (homePage) homePage.setAttribute('hidden', 'true');
+        if (profilePage) profilePage.removeAttribute('hidden');
+
+        renderProfile(person);
+        renderLists(person);
+        setupProfileEditing(person);
+
+      // Initialize counters and event listeners
+        setTimeout(() => {
+      const counters = document.querySelectorAll(".list-card");
+      counters.forEach((listCard) => {
+        const checkboxes = listCard.querySelectorAll("input[type='checkbox']");
+        const counter = listCard.querySelector(".counter strong");
+        if (!counter) return; // Skip if no counter (non-selectable lists)
+        
+        const updateCounter = () => {
+          const checked = Array.from(checkboxes).filter((box) => box.checked);
+          counter.textContent = checked.length;
+        };
+        
+        checkboxes.forEach((box) => {
+          box.addEventListener("change", () => {
+            const item = box.closest('.item');
+            if (box.checked) {
+              item.classList.add('checked');
+            } else {
+              item.classList.remove('checked');
+            }
+            updateCounter();
+                saveSelections();
+          });
+        });
+        
+        updateCounter();
+      });
+
+      // Load saved selections
+      loadSelections();
+      
+      // Update counters after loading
+      counters.forEach((listCard) => {
+        const checkboxes = listCard.querySelectorAll("input[type='checkbox']");
+        const counter = listCard.querySelector(".counter strong");
+        if (!counter) return; // Skip if no counter (non-selectable lists)
+        const checked = Array.from(checkboxes).filter((box) => box.checked);
+        counter.textContent = checked.length;
+      });
+        }, 0);
+      }
+
+      // Share button functionality
+      const shareButton = document.getElementById('copyLink');
+      const shareStatus = document.getElementById('shareStatus');
+      if (shareButton) {
+        shareButton.addEventListener('click', async () => {
+          try {
+            const personParam = getPersonFromURL();
+            const person = getCurrentPerson();
+            if (!personParam || !person) {
+              if (shareStatus) {
+                shareStatus.textContent = 'برای کپی لینک، ابتدا پروفایل اختصاصی را باز کنید.';
+              }
+              return;
+            }
+            // Use the username from URL (personParam) for the share link
+            const url = `https://esmailiyan.github.io/index.html?person=${personParam}`;
+            await navigator.clipboard.writeText(url);
+            if (shareStatus) {
+              shareStatus.textContent = 'لینک پروفایل کپی شد!';
+            }
+          } catch (error) {
+            if (shareStatus) {
+              shareStatus.textContent = 'مرورگر اجازه‌ی کپی خودکار نداد؛ لطفاً دستی کپی کنید.';
+            }
+          }
+        });
+      }
+
+      // Redirect owner to editable form with preloaded data
+      function setupProfileEditing(person) {
+        const avatar = document.getElementById('profileImage');
+        if (!avatar || !person) return;
+        avatar.title = 'برای ویرایش فهرست خود کلیک کنید';
+
+        avatar.addEventListener('click', () => {
+          const draft = prepareWishlistDraft(person);
+          if (draft) {
+            sessionStorage.setItem('wishlistImport', JSON.stringify(draft));
+          }
+          const personParam = getPersonFromURL();
+          // Get actual personId from username mapping or use personParam if it's already a personId
+          const personId = getPersonIdFromUsername(personParam) || personParam;
+          const target = `./profile.html${personId ? `?person=${personId}` : ''}`;
+          window.location.href = target;
+        });
+      }
+
+      // Group Purchase Functions
+      function getStorageKeyForPurchases() {
+        const personParam = getPersonFromURL();
+        if (!personParam) return 'groupPurchases_default';
+        const personId = getPersonIdFromUsername(personParam) || personParam;
+        return `groupPurchases_${personId}`;
+      }
+
+      function getGroupPurchaseData(itemId, person) {
+        try {
+          const storageKey = getStorageKeyForPurchases();
+          const data = JSON.parse(localStorage.getItem(storageKey) || '{}');
+          const itemData = data[itemId] || { contributions: [] };
+          const totalContributed = itemData.contributions.reduce((sum, c) => sum + (c.amount || 0), 0);
+          return {
+            contributions: itemData.contributions || [],
+            totalContributed: totalContributed
+          };
+        } catch (e) {
+          return { contributions: [], totalContributed: 0 };
+        }
+      }
+
+      function parsePrice(priceStr) {
+        if (!priceStr) return 0;
+        let str = String(priceStr);
+        // تبدیل اعداد فارسی و عربی به اعداد انگلیسی
+        const persianDigits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+        const arabicDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+        persianDigits.forEach((d, i) => {
+          const regex = new RegExp(d, 'g');
+          str = str.replace(regex, String(i));
+        });
+        arabicDigits.forEach((d, i) => {
+          const regex = new RegExp(d, 'g');
+          str = str.replace(regex, String(i));
+        });
+        const cleaned = str.replace(/[^\d]/g, '');
+        return parseInt(cleaned, 10) || 0;
+      }
+
+      function formatPrice(amount) {
+        return amount.toLocaleString('fa-IR');
+      }
+
+      let currentContributeData = null;
+
+      function openContributeModal(itemId, itemTitle, totalPrice, remainingAmount, personName) {
+        currentContributeData = { itemId, itemTitle, totalPrice, remainingAmount, personName };
+        const modal = document.getElementById('contributeModal');
+        const titleEl = document.getElementById('contributeItemTitle');
+        const infoEl = document.getElementById('contributeItemInfo');
+        const amountEl = document.getElementById('contributeAmount');
+
+        titleEl.textContent = itemTitle;
+        infoEl.textContent = `قیمت کل: ${formatPrice(totalPrice)} تومان | باقیمانده: ${formatPrice(remainingAmount)} تومان`;
+        amountEl.value = '';
+        amountEl.max = remainingAmount;
+        modal.style.display = 'flex';
+        amountEl.focus();
+      }
+
+      function closeContributeModal() {
+        const modal = document.getElementById('contributeModal');
+        modal.style.display = 'none';
+        currentContributeData = null;
+      }
+
+      function submitContribution() {
+        if (!currentContributeData) return;
+
+        const amountEl = document.getElementById('contributeAmount');
+        const amount = parseInt(amountEl.value);
+
+        if (!amount || amount <= 0) {
+          alert('لطفاً مبلغ معتبری وارد کنید');
+          return;
+        }
+
+        if (amount > currentContributeData.remainingAmount) {
+          alert(`مبلغ نمی‌تواند بیشتر از ${formatPrice(currentContributeData.remainingAmount)} تومان باشد`);
+          return;
+        }
+
+        try {
+          const storageKey = getStorageKeyForPurchases();
+          const data = JSON.parse(localStorage.getItem(storageKey) || '{}');
+          if (!data[currentContributeData.itemId]) {
+            data[currentContributeData.itemId] = { contributions: [] };
+          }
+
+          const userId = getUserId();
+          data[currentContributeData.itemId].contributions.push({
+            userId: userId,
+            amount: amount,
+            timestamp: new Date().toISOString(),
+            contributorName: 'شما'
+          });
+
+          localStorage.setItem(storageKey, JSON.stringify(data));
+          alert(`مبلغ ${formatPrice(amount)} تومان با موفقیت پرداخت شد!`);
+          closeContributeModal();
+          
+          // Reload the page to show updated progress
+          const person = getCurrentPerson();
+          if (person) {
+            renderLists(person);
+          }
+        } catch (e) {
+          alert('خطا در ذخیره اطلاعات. لطفاً دوباره تلاش کنید.');
+          console.error(e);
+        }
+      }
+
+      // Close modal on outside click
+      document.addEventListener('click', (e) => {
+        const modal = document.getElementById('contributeModal');
+        if (e.target === modal) {
+          closeContributeModal();
+        }
+      });
+
+      // Show wallet link
+      function showWalletLink() {
+        const walletLink = document.getElementById('walletLink');
+        if (walletLink) {
+          const personParam = getPersonFromURL();
+          if (personParam) {
+            walletLink.href = `./wallet.html?person=${personParam}`;
+          }
+          walletLink.removeAttribute('hidden');
+        }
+      }
+
+      // Initialize on page load
+      initPage();
+      showWalletLink();
+    </script>
+  </body>
+</html>

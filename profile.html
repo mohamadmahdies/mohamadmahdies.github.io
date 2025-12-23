@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فرم دریافت هدیه | فهرست خواسته‌ها</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #fff8f7;
+        --card: #ffffff;
+        --accent: #ea5458;
+        --accent-2: #c63e42;
+        --accent-light: #fde8e9;
+        --text: #1f1a1b;
+        --muted: #6b5f60;
+        --border: #f0d7d8;
+        --shadow: 0 24px 70px rgba(234, 84, 88, 0.12);
+        font-family: "Vazirmatn", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(150deg, #fff8f7 0%, #fde8e9 45%, #fff8f7 100%);
+        color: var(--text);
+        line-height: 1.7;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 36px clamp(18px, 5vw, 56px) 72px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .hero {
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 24px;
+        padding: clamp(28px, 5vw, 48px);
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(234, 84, 88, 0.12);
+        backdrop-filter: blur(4px);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 28px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: var(--accent-light);
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        color: var(--accent);
+        font-size: clamp(30px, 5vw, 42px);
+      }
+
+      p.lead {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 17px;
+      }
+
+      .hero-list {
+        margin: 0;
+        padding: 0 18px 0 0;
+        color: var(--muted);
+        display: grid;
+        gap: 6px;
+        list-style: "• ";
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .stat {
+        background: var(--accent);
+        color: #fff;
+        border-radius: 18px;
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .stat strong {
+        font-size: 20px;
+      }
+
+      section {
+        background: var(--card);
+        border-radius: 22px;
+        padding: 24px clamp(18px, 3vw, 32px);
+        box-shadow: 0 16px 50px rgba(74, 95, 193, 0.08);
+        border: 1px solid rgba(74, 95, 193, 0.08);
+      }
+
+      section h2 {
+        margin: 0 0 12px;
+        color: var(--accent);
+      }
+
+      section p {
+        margin: 0 0 18px;
+        color: var(--muted);
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 18px 20px;
+        align-items: start;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-weight: 600;
+        color: #27314f;
+      }
+
+      .label-head {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+      }
+
+      .req {
+        color: #d7263d;
+        font-weight: 800;
+      }
+
+      input,
+      textarea,
+      select {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 15px;
+        font-family: inherit;
+        background: #fbfbff;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(74, 95, 193, 0.14);
+      }
+
+      select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%233d5a80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: 12px 50%;
+        padding-left: 44px;
+        padding-right: 14px;
+        height: 46px;
+      }
+
+      textarea {
+        min-height: 90px;
+        resize: vertical;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        grid-column: 1 / -1;
+      }
+
+      button,
+      .ghost {
+        border: none;
+        cursor: pointer;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 15px;
+        transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s;
+      }
+
+      button.primary {
+        background: linear-gradient(135deg, var(--accent), #c63e42);
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(234, 84, 88, 0.25);
+      }
+
+      button.secondary {
+        background: #fff7f7;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+      }
+
+      button:hover,
+      .ghost:hover {
+        transform: translateY(-1px);
+      }
+
+      .list {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .card {
+        background: #fffafa;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 14px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        transition: transform 0.15s ease, box-shadow 0.2s ease;
+      }
+
+      .card h3 {
+        margin: 0 0 6px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .pill {
+        display: inline-block;
+        background: var(--accent-light);
+        color: var(--accent);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+        margin-left: 6px;
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 6px;
+      }
+
+      .ghost {
+        background: #fff1f1;
+        color: #2b2b2b;
+        border: 1px solid var(--border);
+      }
+
+      .empty {
+        text-align: center;
+        padding: 24px;
+        color: var(--muted);
+        border: 1px dashed var(--border);
+        border-radius: 14px;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 36px rgba(74, 95, 193, 0.12);
+      }
+
+      @media (max-width: 640px) {
+        .card {
+          grid-template-columns: 1fr;
+        }
+        .actions {
+          flex-direction: column;
+        }
+        form {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <section>
+        <h2>اطلاعات فردی و دریافت هدیه</h2>
+        <p>این بخش برای هماهنگی ارسال هدیه و ترجیحات کلی است.</p>
+        <form id="profileForm">
+          <label>
+            <span class="label-head">یوزرنیم (برای لینک پروفایل) <span class="req">*</span></span>
+            <input name="username" id="usernameInput" required placeholder="مثلاً: yalda" pattern="[a-z0-9_-]+" title="فقط حروف کوچک انگلیسی، اعداد، خط تیره و آندرلاین مجاز است" />
+            <small id="usernameError" style="color: #d7263d; display: none; margin-top: 4px; font-size: 12px;"></small>
+            <small id="usernameSuccess" style="color: #28a745; display: none; margin-top: 4px; font-size: 12px;">✓ یوزرنیم در دسترس است</small>
+          </label>
+          <label>
+            <span class="label-head">نام و نام خانوادگی <span class="req">*</span></span>
+            <input name="fullName" required placeholder="مثلاً: ندا عباسی" />
+          </label>
+          <label>
+            <span class="label-head">شماره تماس <span class="req">*</span></span>
+            <input
+              name="phone"
+              inputmode="tel"
+              required
+              placeholder="09xx xxx xxxx"
+            />
+          </label>
+          <label>
+            ایمیل (اختیاری)
+            <input name="email" type="email" placeholder="example@mail.com" />
+          </label>
+          <label>
+            تاریخ تولد (اختیاری)
+            <input name="eventDate" type="date" />
+          </label>
+          <label>
+            بایوگرافی (اختیاری)
+            <textarea
+              name="constraints"
+              placeholder="مثلاً: حساسیت به عطر، علاقه‌مند به محصولات سازگار با محیط‌زیست و ..."
+            ></textarea>
+          </label>
+          <div class="actions">
+            <button type="submit" class="primary">ذخیره اطلاعات فردی</button>
+            <button type="button" class="secondary" id="resetProfile">
+              پاکسازی
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section>
+        <h2>افزودن یا ویرایش کالای مورد علاقه</h2>
+        <p>هر موردی که دوست دارید هدیه بگیرید را با جزئیات زیر ثبت کنید.</p>
+        <form id="itemForm">
+          <label>
+            <span class="label-head">نام کالا <span class="req">*</span></span>
+            <input name="title" required placeholder="مثلاً: اسپیکر بلوتوث" />
+          </label>
+          <label>
+            دسته‌بندی (اختیاری)
+            <select name="category">
+              <option value="">بدون انتخاب</option>
+              <option value="تکنولوژی">تکنولوژی</option>
+              <option value="پوشاک">پوشاک</option>
+              <option value="کتاب">کتاب</option>
+              <option value="تزئینی">تزئینی</option>
+              <option value="تجربه‌ای (کلاس/تور)">تجربه‌ای (کلاس/تور)</option>
+              <option value="دیگر">دیگر</option>
+            </select>
+          </label>
+          <label>
+            <span class="label-head">لینک خرید یا نمونه <span class="req">*</span></span>
+            <input
+              name="link"
+              type="url"
+              required
+              placeholder="https://example.com/product"
+            />
+          </label>
+          <label>
+            <span class="label-head">محدوده بودجه (تومان) <span class="req">*</span></span>
+            <input
+              name="budget"
+              inputmode="numeric"
+              required
+              placeholder="مثلاً ۱٬۵۰۰٬۰۰۰"
+            />
+          </label>
+          <label>
+            اولویت (اختیاری)
+            <select name="priority">
+              <option value="">بدون انتخاب</option>
+              <option value="خیلی مهم">خیلی مهم</option>
+              <option value="مهم">مهم</option>
+              <option value="خوشحال‌کننده">خوشحال‌کننده</option>
+              <option value="گزینه جایگزین">گزینه جایگزین</option>
+            </select>
+          </label>
+          <label>
+            سایز/رنگ/جزئیات (اختیاری)
+            <input
+              name="options"
+              placeholder="مثلاً: رنگ سرمه‌ای، سایز ۴۰ یا مدل خاص"
+            />
+          </label>
+          <label>
+            توضیحات تکمیلی (اختیاری)
+            <textarea
+              name="notes"
+              placeholder="چرا این گزینه را دوست دارید یا نکات مهم خرید"
+            ></textarea>
+          </label>
+          <div class="actions">
+            <button type="submit" class="primary" id="submitItem">
+              افزودن به فهرست
+            </button>
+            <button type="button" class="secondary" id="cancelEdit">
+              انصراف از ویرایش
+            </button>
+          </div>
+        </form>
+
+        <div class="list" id="itemsList">
+          <div class="empty">هنوز کالایی اضافه نشده است.</div>
+        </div>
+      </section>
+
+      <section style="text-align: center; padding: 24px;">
+        <a href="#" id="publicProfileLink" class="public-profile-link disabled" style="display: inline-block; padding: 12px 24px; background: #ccc; color: #666; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.2s; cursor: not-allowed; pointer-events: none;">
+          مشاهده پروفایل عمومی
+        </a>
+      </section>
+    </div>
+
+    <script src="./people-config.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const personId = params.get('person');
+      const STORAGE_KEY = personId ? `gift-template-v1-${personId}` : "gift-template-v1";
+      const USERNAMES_KEY = "gift-template-usernames"; // Key for storing all usernames
+      const profileForm = document.getElementById("profileForm");
+      const itemForm = document.getElementById("itemForm");
+      const itemsList = document.getElementById("itemsList");
+      const submitItemBtn = document.getElementById("submitItem");
+      const cancelEditBtn = document.getElementById("cancelEdit");
+      const resetProfileBtn = document.getElementById("resetProfile");
+      const usernameInput = document.getElementById("usernameInput");
+      const usernameError = document.getElementById("usernameError");
+      const usernameSuccess = document.getElementById("usernameSuccess");
+
+      let items = [];
+      let editingId = null;
+
+      const readStorage = () => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+          return saved || { profile: {}, items: [] };
+        } catch (e) {
+          return { profile: {}, items: [] };
+        }
+      };
+
+      const writeStorage = (data) => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      };
+
+      // Get all registered usernames
+      const getAllUsernames = () => {
+        try {
+          const usernames = JSON.parse(localStorage.getItem(USERNAMES_KEY) || "{}");
+          return usernames;
+        } catch (e) {
+          return {};
+        }
+      };
+
+      // Check if username is available (not duplicate)
+      const checkUsernameAvailability = (username, currentPersonId) => {
+        if (!username || username.trim() === "") return false;
+        const usernameLower = username.toLowerCase().trim();
+        const allUsernames = getAllUsernames();
+        
+        // Check if username exists and belongs to a different person
+        if (allUsernames[usernameLower] && allUsernames[usernameLower] !== currentPersonId) {
+          return false;
+        }
+        return true;
+      };
+
+      // Register username
+      const registerUsername = (username, personId) => {
+        if (!username || !personId) return;
+        const usernameLower = username.toLowerCase().trim();
+        const allUsernames = getAllUsernames();
+        allUsernames[usernameLower] = personId;
+        localStorage.setItem(USERNAMES_KEY, JSON.stringify(allUsernames));
+      };
+
+      // Remove username registration
+      const unregisterUsername = (username) => {
+        if (!username) return;
+        const usernameLower = username.toLowerCase().trim();
+        const allUsernames = getAllUsernames();
+        delete allUsernames[usernameLower];
+        localStorage.setItem(USERNAMES_KEY, JSON.stringify(allUsernames));
+      };
+
+      const fillProfile = (profile) => {
+        Object.entries(profile || {}).forEach(([key, value]) => {
+          if (profileForm.elements[key]) {
+            profileForm.elements[key].value = value;
+          }
+        });
+      };
+
+      const renderItems = () => {
+        itemsList.innerHTML = "";
+        if (!items.length) {
+          itemsList.innerHTML =
+            '<div class="empty">هنوز کالایی اضافه نشده است.</div>';
+          return;
+        }
+
+        items.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <div>
+              <h3>${item.title} <span class="pill">${item.category}</span></h3>
+              <p>${item.notes || "بدون توضیح اضافه"}</p>
+              <p>
+                <span class="pill">اولویت: ${item.priority}</span>
+                ${item.budget ? `<span class="pill">بودجه: ${item.budget}</span>` : ""}
+                ${item.options ? `<span class="pill">${item.options}</span>` : ""}
+                ${item.link ? `<a href="${item.link}" target="_blank" class="pill" style="text-decoration:none;">لینک</a>` : ""}
+              </p>
+            </div>
+            <div class="card-actions">
+              <button class="ghost" data-edit="${item.id}">ویرایش</button>
+              <button class="ghost" data-delete="${item.id}">حذف</button>
+            </div>
+          `;
+          itemsList.appendChild(card);
+        });
+
+      };
+
+      const resetItemForm = () => {
+        itemForm.reset();
+        editingId = null;
+        submitItemBtn.textContent = "افزودن به فهرست";
+        cancelEditBtn.hidden = false;
+      };
+
+      // Username validation on input
+      if (usernameInput) {
+        let usernameCheckTimeout;
+        usernameInput.addEventListener("input", (e) => {
+          clearTimeout(usernameCheckTimeout);
+          const username = e.target.value.trim().toLowerCase();
+          
+          usernameError.style.display = "none";
+          usernameSuccess.style.display = "none";
+          
+          if (username === "") {
+            updatePublicProfileLink('');
+            return;
+          }
+          
+          // Validate format
+          if (!/^[a-z0-9_-]+$/.test(username)) {
+            usernameError.textContent = "فقط حروف کوچک انگلیسی، اعداد، خط تیره و آندرلاین مجاز است";
+            usernameError.style.display = "block";
+            return;
+          }
+          
+          // Check availability after a short delay
+          usernameCheckTimeout = setTimeout(() => {
+            const isAvailable = checkUsernameAvailability(username, personId);
+            if (isAvailable) {
+              usernameSuccess.style.display = "block";
+              usernameError.style.display = "none";
+              // Update button if username is valid
+              if (username.length > 0) {
+                updatePublicProfileLink(username);
+              } else {
+                updatePublicProfileLink('');
+              }
+            } else {
+              usernameError.textContent = "این یوزرنیم قبلاً استفاده شده است";
+              usernameError.style.display = "block";
+              usernameSuccess.style.display = "none";
+              updatePublicProfileLink('');
+            }
+          }, 500);
+        });
+      }
+
+      profileForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(profileForm);
+        const profile = Object.fromEntries(formData.entries());
+        const username = profile.username?.trim().toLowerCase();
+        
+        // Validate username
+        if (!username) {
+          alert("لطفاً یوزرنیم را وارد کنید");
+          return;
+        }
+        
+        if (!/^[a-z0-9_-]+$/.test(username)) {
+          alert("یوزرنیم فقط می‌تواند شامل حروف کوچک انگلیسی، اعداد، خط تیره و آندرلاین باشد");
+          return;
+        }
+        
+        // Check if username is available
+        const stored = readStorage();
+        const oldUsername = stored.profile?.username?.trim().toLowerCase();
+        
+        // If username changed, check availability
+        if (oldUsername !== username) {
+          if (!checkUsernameAvailability(username, personId)) {
+            alert("این یوزرنیم قبلاً استفاده شده است. لطفاً یوزرنیم دیگری انتخاب کنید");
+            return;
+          }
+          
+          // Unregister old username if exists
+          if (oldUsername) {
+            unregisterUsername(oldUsername);
+          }
+          
+          // Register new username
+          registerUsername(username, personId);
+        } else if (!oldUsername) {
+          // First time setting username
+          registerUsername(username, personId);
+        }
+        
+        writeStorage({ profile, items });
+        alert("اطلاعات فردی ذخیره شد.");
+        
+        // Update public profile link
+        updatePublicProfileLink(username);
+      });
+
+      resetProfileBtn.addEventListener("click", () => {
+        const stored = readStorage();
+        const oldUsername = stored.profile?.username?.trim().toLowerCase();
+        
+        // Unregister username if exists
+        if (oldUsername) {
+          unregisterUsername(oldUsername);
+        }
+        
+        profileForm.reset();
+        writeStorage({ profile: {}, items: stored.items || [] });
+        
+        // Hide public profile link
+        const publicProfileLink = document.getElementById('publicProfileLink');
+        if (publicProfileLink) {
+          publicProfileLink.style.display = 'none';
+        }
+        
+        // Hide username messages
+        if (usernameError) usernameError.style.display = 'none';
+        if (usernameSuccess) usernameSuccess.style.display = 'none';
+      });
+
+      itemForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(itemForm).entries());
+
+        if (editingId) {
+          items = items.map((it) => (it.id === editingId ? { ...it, ...data } : it));
+        } else {
+          items.push({ id: crypto.randomUUID(), ...data });
+        }
+
+        writeStorage({ profile: readStorage().profile, items });
+        renderItems();
+        resetItemForm();
+      });
+
+      itemsList.addEventListener("click", (e) => {
+        const editId = e.target.getAttribute("data-edit");
+        const deleteId = e.target.getAttribute("data-delete");
+
+        if (editId) {
+          const item = items.find((it) => it.id === editId);
+          if (!item) return;
+          Object.entries(item).forEach(([key, value]) => {
+            if (itemForm.elements[key]) itemForm.elements[key].value = value;
+          });
+          editingId = editId;
+          submitItemBtn.textContent = "ویرایش آیتم";
+          cancelEditBtn.hidden = false;
+        }
+
+        if (deleteId) {
+          if (!confirm("آیا از حذف این آیتم مطمئن هستید؟")) return;
+          items = items.filter((it) => it.id !== deleteId);
+          writeStorage({ profile: readStorage().profile, items });
+          renderItems();
+          resetItemForm();
+        }
+      });
+
+      cancelEditBtn.addEventListener("click", resetItemForm);
+
+      const bootstrapFromSession = () => {
+        const draft = sessionStorage.getItem("wishlistImport");
+        if (!draft) return null;
+        try {
+          const parsed = JSON.parse(draft);
+          sessionStorage.removeItem("wishlistImport");
+          return parsed;
+        } catch (e) {
+          sessionStorage.removeItem("wishlistImport");
+          return null;
+        }
+      };
+
+      // Update public profile link
+      const updatePublicProfileLink = (username) => {
+        const publicProfileLink = document.getElementById('publicProfileLink');
+        if (!publicProfileLink) return;
+        
+        if (username && username.trim() !== '') {
+          // Build absolute URL
+          const baseUrl = 'https://esmailiyan.github.io/';
+          publicProfileLink.href = `${baseUrl}index.html?person=${username}`;
+          publicProfileLink.style.display = 'inline-block';
+          publicProfileLink.classList.remove('disabled');
+          publicProfileLink.style.background = 'var(--accent)';
+          publicProfileLink.style.color = '#fff';
+          publicProfileLink.style.cursor = 'pointer';
+          publicProfileLink.style.pointerEvents = 'auto';
+        } else {
+          // Disabled state
+          publicProfileLink.href = '#';
+          publicProfileLink.style.display = 'inline-block';
+          publicProfileLink.classList.add('disabled');
+          publicProfileLink.style.background = '#ccc';
+          publicProfileLink.style.color = '#666';
+          publicProfileLink.style.cursor = 'not-allowed';
+          publicProfileLink.style.pointerEvents = 'none';
+        }
+      };
+
+      // Setup public profile link on page load
+      const setupPublicProfileLink = () => {
+        const stored = readStorage();
+        const username = stored.profile?.username;
+        updatePublicProfileLink(username);
+      };
+
+      // init
+      const stored = readStorage();
+      const imported = bootstrapFromSession();
+      const initialProfile = imported?.profile && Object.keys(imported.profile).length ? imported.profile : stored.profile;
+      const initialItems = imported?.items?.length ? imported.items : stored.items || [];
+
+      items = initialItems;
+      fillProfile(initialProfile);
+      writeStorage({ profile: initialProfile || {}, items });
+      renderItems();
+      
+      // Setup public profile link
+      setupPublicProfileLink();
+    </script>
+  </body>
+</html>
