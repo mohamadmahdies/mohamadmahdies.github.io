@@ -375,10 +375,45 @@
     object-fit: contain;
   }
 
-  .floating-note,
-  .hero-dimensions,
+  .floating-note {
+    display: inline-flex;
+    padding: 6px 9px;
+    font-size: 0.58rem;
+    box-shadow: 0 7px 20px rgba(16, 42, 67, 0.12);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .note-top {
+    top: 9%;
+    right: 1%;
+    left: auto;
+  }
+
+  .note-bottom {
+    right: 1%;
+    bottom: 4%;
+    left: auto;
+  }
+
+  .hero-dimensions {
+    right: auto;
+    bottom: 4%;
+    left: 1%;
+    display: flex;
+    padding: 7px 9px;
+    font-size: 0.52rem;
+    line-height: 1.6;
+  }
+
   .shape-two {
-    display: none;
+    right: auto;
+    bottom: 1%;
+    left: 4%;
+    width: 90px;
+    height: 90px;
+    display: block;
+    border-width: 18px;
   }
 
   .shape-one {
@@ -808,11 +843,13 @@
   }
 
   .floating-note {
-    padding: 6px 9px;
+    padding: 5px 8px;
+    font-size: 0.54rem;
   }
 
   .hero-dimensions {
-    display: none;
+    padding: 6px 8px;
+    font-size: 0.48rem;
   }
 
   .size-chip-group {
