@@ -1,22 +1,24 @@
-# وب‌سایت فروش و معرفی تشک آرامیس
+# Aramis Mattress Website
 
-یک وب‌سایت فارسی، راست‌چین و واکنش‌گرا برای معرفی تشک، مقایسه قیمت نمونه نقدی و اقساطی، راهنمای انتخاب سایز و ثبت درخواست مشاوره. پروژه با HTML، CSS و JavaScript خالص ساخته شده و به build یا نصب وابستگی نیاز ندارد.
+A responsive, mobile-focused Persian RTL website for presenting mattresses, comparing sample cash and installment prices, choosing mattress sizes, and contacting the sales team directly.
 
-> نام «آرامیس»، اطلاعات تماس و تمام قیمت‌های فعلی صرفاً داده نمونه هستند. پیش از انتشار، آن‌ها را با اطلاعات قطعی کسب‌وکار جایگزین کنید.
+The project is built with plain HTML, CSS, and JavaScript. It has no build step or runtime dependencies.
 
-## اجرای پروژه
+> The Aramis brand name, contact details, warranties, and current prices are sample data. Replace them with verified business information before publishing the website.
 
-ساده‌ترین روش، بازکردن مستقیم `index.html` در مرورگر است. همه داده‌ها در فایل JavaScript قرار دارند و پروژه با آدرس `file://` نیز اجرا می‌شود.
+## Running the Project
 
-برای اجرای پروژه روی یک وب‌سرور محلی:
+The website works by opening `index.html` directly in a browser. Product data is stored in JavaScript, so the site also works through the `file://` protocol.
+
+To run it with a local web server:
 
 ```bash
 python3 -m http.server 8080
 ```
 
-سپس آدرس `http://localhost:8080` را باز کنید.
+Then open `http://localhost:8080`.
 
-## ساختار فایل‌ها
+## Project Structure
 
 ```text
 .
@@ -48,30 +50,31 @@ python3 -m http.server 8080
 └── README.md
 ```
 
-## تغییر اطلاعات برند و تماس
+## Updating Brand and Contact Information
 
-ابتدای فایل `assets/js/products.js` آبجکت `STORE_CONFIG` قرار دارد:
+The `STORE_CONFIG` object is located at the beginning of `assets/js/products.js`:
 
 ```js
 window.STORE_CONFIG = {
   brandName: "آرامیس",
   slogan: "خواب آرام، انتخاب مطمئن",
   phone: "09xxxxxxxxx",
-  whatsapp: "989xxxxxxxxx",
   address: "آدرس فروشگاه یا کارخانه",
   workingHours: "شنبه تا پنج‌شنبه، ۹ تا ۲۰",
 };
 ```
 
-- شماره واتساپ را بدون `+`، فاصله و خط تیره و با کد کشور وارد کنید؛ برای نمونه `989121234567`.
-- شماره تلفن می‌تواند با صفر ابتدای شماره وارد شود.
-- هدر، فوتر، دکمه‌های تماس، واتساپ و صفحه تماس به‌صورت خودکار از همین تنظیمات به‌روزرسانی می‌شوند.
+- Replace `phone` with the real sales number, including the leading zero; for example, `09123456789`.
+- The header, footer, product cards, product detail page, fixed mobile contact bar, and contact page all use this number automatically.
+- Every order and phone icon uses a `tel:` link. On mobile devices, tapping it opens the phone dialer directly.
 
-## تغییر محصولات و قیمت‌ها
+## Updating Products and Prices
 
-همه اطلاعات در آرایه `PRODUCTS` داخل `assets/js/products.js` قرار دارند. مبلغ‌ها عددی و با واحد تومان ذخیره می‌شوند؛ جداکننده هزارگان و کلمه «تومان» در رابط کاربری به‌صورت خودکار اضافه می‌شوند.
+All catalog data is stored in the `PRODUCTS` array inside `assets/js/products.js`.
 
-برای هر سایز این چهار مقدار قابل ویرایش است:
+Prices are stored as numbers in toman. The interface automatically adds thousands separators and the Persian currency label.
+
+Each product size supports the following fields:
 
 ```js
 "200×160": {
@@ -82,12 +85,12 @@ window.STORE_CONFIG = {
 }
 ```
 
-- `cashPrice`: قیمت نقدی
-- `sixMonthInstallmentPrice`: مبلغ کل خرید اقساطی شش‌ماهه
-- `monthlyInstallmentAmount`: مبلغ هر قسط
-- `updatedAt`: تاریخ آخرین به‌روزرسانی
+- `cashPrice`: sample cash price
+- `sixMonthInstallmentPrice`: total sample price for the six-month installment plan
+- `monthlyInstallmentAmount`: sample amount of each monthly payment
+- `updatedAt`: last price update date
 
-برای سایزی که قیمت مشخص ندارد، هر سه مبلغ را `null` بگذارید:
+If a price is unavailable, set all three price values to `null`:
 
 ```js
 cashPrice: null,
@@ -95,65 +98,93 @@ sixMonthInstallmentPrice: null,
 monthlyInstallmentAmount: null
 ```
 
-در این حالت سایت عبارت «برای استعلام تماس بگیرید» را نمایش می‌دهد. افزودن یا تغییر قیمت‌ها نیازی به ویرایش HTML ندارد.
+The interface will then display the Persian equivalent of “Call for a price inquiry.” Products and prices can be updated without editing the HTML files.
 
-### افزودن محصول
+### Adding a Product
 
-یک عضو جدید با `id` یکتا به آرایه `PRODUCTS` اضافه کنید. فیلدهای مهم عبارت‌اند از:
+Add a new object with a unique `id` to the `PRODUCTS` array.
 
-- `categoryKey`: مقدار `medical` یا `hybrid` برای عملکرد فیلتر
-- `status`: مقدار `available` یا `inquiry`
-- `image`: مسیر تصویر اصلی
-- `gallery`: تصاویر یا نماهای گالری
-- `features`: فهرست ویژگی‌ها
-- `prices`: قیمت همه سایزها
+Important fields include:
 
-صفحه محصولات، صفحه جزئیات و محصولات مشابه به‌صورت داینامیک رندر می‌شوند. لینک جزئیات محصول الگوی `product.html?id=PRODUCT_ID` دارد.
+- `categoryKey`: use `medical` or `hybrid` for catalog filtering
+- `status`: use `available` or `inquiry`
+- `image`: path to the primary product image
+- `gallery`: product gallery images or views
+- `features`: list of product features
+- `prices`: pricing data for every available size
 
-## جایگزینی تصاویر
+The catalog, detail view, and related-products section are rendered dynamically. Product detail URLs follow this format:
 
-تصاویر فعلی با ابزار تولید تصویر و با سبک سه‌بعدی نیمه‌واقعی ساخته شده‌اند. فایل‌های PNG اصلی دارای کانال آلفا و پس‌زمینه کاملاً شفاف هستند. نسخه‌های WebP شفاف و سبک‌تر در رابط کاربری استفاده می‌شوند تا بارگذاری در موبایل سریع‌تر باشد. برای جایگزینی:
+```text
+product.html?id=PRODUCT_ID
+```
 
-1. تصویر جدید را با نسبت ترجیحی `4:3` و حداقل عرض ۱۲۰۰ پیکسل آماده کنید.
-2. فایل را در `assets/images/` قرار دهید.
-3. مقدار `image` و در صورت نیاز مسیرهای `gallery` محصول را در `assets/js/products.js` تغییر دهید.
-4. برای جلوگیری از Layout Shift، نسبت تصویر را حفظ کنید.
-5. برای عملکرد بهتر موبایل، از تصویر جدید یک نسخه WebP شفاف نیز بسازید و مسیر آن را در داده محصول قرار دهید.
-6. متن `alt` به‌صورت داینامیک از نام محصول ساخته می‌شود.
+## Replacing Product Images
 
-## فونت‌ها
+The current images are semi-realistic 3D product renders with transparent backgrounds.
 
-وزیرمتن برای متن‌ها، کنترل‌ها و قیمت‌ها و لاله‌زار برای تیترهای اصلی و نام برند استفاده شده است. هر دو فونت به‌صورت WOFF2 داخل `assets/fonts/` قرار دارند و برای نمایش صحیح به اینترنت نیاز ندارند. تعریف فونت‌ها در ابتدای `assets/css/style.css` است.
+- The PNG files contain full alpha transparency.
+- Optimized transparent WebP files are used in the interface for faster mobile loading.
+- The recommended image ratio is `4:3`.
+- Use images at least 1200 pixels wide.
 
-## رفتار بخش‌های تعاملی
+To replace an image:
 
-- فیلتر و مرتب‌سازی محصولات بدون رفرش صفحه انجام می‌شود.
-- تغییر سایز، قیمت کارت و لینک جزئیات را بلافاصله تغییر می‌دهد.
-- در صفحه جزئیات، سایز، نوع خرید، قیمت، جدول و عرض درج‌شده روی تصویر همگام هستند.
-- پیام واتساپ شامل مدل، سایز، نوع خرید و قیمت نمونه است.
-- فرم مشاوره اعتبارسنجی سمت مرورگر دارد. چون پروژه backend ندارد، ثبت فرم نمایشی است و داده‌ای به سرور ارسال نمی‌شود.
-- دکمه کپی تلفن از Clipboard API و روش جایگزین مرورگر استفاده می‌کند.
-- مودال اقساط با عنصر بومی `dialog` پیاده‌سازی شده است.
-- راهنمای سایز بر اساس تعداد نفرات و متراژ اتاق پیشنهاد اولیه ارائه می‌دهد.
+1. Prepare a transparent product image using a `4:3` canvas.
+2. Add it to `assets/images/`.
+3. Update the product’s `image` path and, if necessary, its `gallery` paths in `assets/js/products.js`.
+4. Keep the same aspect ratio to reduce layout shift.
+5. Create an optimized transparent WebP version for better mobile performance.
 
-## انتشار
+Image alternative text is generated dynamically from the product name.
 
-تمام فایل‌ها استاتیک هستند و می‌توان پوشه پروژه را مستقیماً روی سرویس‌های میزبانی استاتیک، هاست معمولی یا CDN بارگذاری کرد. برای انتشار واقعی:
+## Fonts
 
-1. اطلاعات `STORE_CONFIG` را تکمیل کنید.
-2. قیمت‌های نمونه را با قیمت‌های قطعی جایگزین کنید.
-3. جزئیات ضمانت و سابقه تولیدکننده را در `about.html` و داده محصولات اصلاح کنید.
-4. placeholder نقشه و تصاویر کارخانه را با محتوای واقعی جایگزین کنید.
-5. آدرس‌های کامل Open Graph و Schema را متناسب با دامنه نهایی تنظیم کنید.
-6. فرم مشاوره را به API یا سرویس فرم موردنظر متصل کنید.
+The website uses:
 
-## سازگاری و دسترس‌پذیری
+- **Vazirmatn** for body text, controls, labels, and prices
+- **Lalezar** for primary headings and the brand name
 
-- طراحی Mobile-first تکمیلی برای موبایل، تبلت و دسکتاپ
-- پشتیبانی از Chrome، Firefox، Safari و Edge جدید
-- کنترل‌های قابل استفاده با کیبورد و وضعیت focus واضح
-- منوی موبایل با مدیریت Escape و `aria-expanded`
-- متن جایگزین فارسی تصاویر
-- پشتیبانی از `prefers-reduced-motion`
-- lazy loading تصاویر خارج از نمای اولیه
-- متادیتای SEO و Schema محصول در صفحه جزئیات
+Both fonts are stored locally as WOFF2 files in `assets/fonts/`. The website does not need an internet connection to load them.
+
+Font declarations are located at the beginning of `assets/css/style.css`.
+
+## Interactive Features
+
+- Product filtering without refreshing the page
+- Price-based sorting
+- Instant price updates when changing the selected size
+- Synchronized size, purchase type, price panel, price table, and image dimension label
+- Direct-call icons on product cards
+- Direct-call order buttons throughout the website
+- Fixed mobile call bar
+- Copy-to-clipboard support for the phone number
+- Native `dialog` modal for installment information
+- Interactive size recommendation based on room area and number of users
+- Compact horizontally scrollable mobile navigation with no sidebar or drawer
+- Reduced mobile animation and blur effects for smoother scrolling
+- Lightweight reveal animations with reduced-motion support
+
+## Deployment
+
+All project files are static. The folder can be uploaded directly to a static hosting provider, a standard web host, or a CDN.
+
+Before publishing:
+
+1. Complete the `STORE_CONFIG` values.
+2. Replace all sample prices with verified prices.
+3. Update warranty details and manufacturer information.
+4. Replace the map and factory placeholders with real content.
+5. Update Open Graph and Schema URLs to use the final production domain.
+
+## Browser Support and Accessibility
+
+- Mobile-first responsive layout for phones, tablets, and desktops
+- Support for current Chrome, Firefox, Safari, and Edge versions
+- Keyboard-accessible controls
+- Visible focus states
+- Persian alternative text for product images
+- `prefers-reduced-motion` support
+- Lazy loading for non-critical images
+- SEO metadata and dynamic Product Schema
+- Mobile safe-area support for the fixed call bar

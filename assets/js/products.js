@@ -7,7 +7,6 @@ window.STORE_CONFIG = {
   brandName: "آرامیس",
   slogan: "خواب آرام، انتخاب مطمئن",
   phone: "09xxxxxxxxx",
-  whatsapp: "989xxxxxxxxx",
   address: "آدرس فروشگاه یا کارخانه",
   workingHours: "شنبه تا پنج‌شنبه، ۹ تا ۲۰",
   instagram: "#",

@@ -8,10 +8,6 @@
   const icons = {
     phone:
       '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.3.54 3.5.54a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.18 2.4.54 3.5a1 1 0 0 1-.24 1z"/></svg>',
-    whatsapp:
-      '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.5-1.7c1.7.9 3.5 1.4 5.4 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.2-3.4-8.4Zm-8.4 18.2c-1.7 0-3.4-.5-4.9-1.3l-.3-.2-3.9 1 1-3.8-.2-.4a9.7 9.7 0 1 1 8.3 4.7Zm5.3-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2l-.9 1.1c-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.2.2 2.4 3.7 5.9 5.2 2.2.9 3.1 1 4.2.8.7-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.2 0-.5-.1-.8-.2Z"/></svg>',
-    menu:
-      '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
     close:
       '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
     arrow:
@@ -31,23 +27,6 @@
 
   function phoneHref() {
     return `tel:${String(config.phone).replace(/\s/g, "")}`;
-  }
-
-  function whatsappHref(message) {
-    const number = String(config.whatsapp).replace(/[^\d]/g, "");
-    return `https://wa.me/${number}?text=${encodeURIComponent(message || `سلام، برای مشاوره خرید تشک ${config.brandName} پیام می‌دهم.`)}`;
-  }
-
-  function productOrderMessage(product, size, type, price) {
-    const typeLabel = type === "installment" ? "اقساط شش‌ماهه" : "نقدی";
-    const priceLabel = price === null ? "نیازمند استعلام" : formatPrice(price);
-    return [
-      `سلام، برای سفارش تشک ${product.name} پیام می‌دهم.`,
-      `سایز: ${toFaNumber(size)} سانتی‌متر`,
-      `نوع خرید: ${typeLabel}`,
-      `قیمت نمونه نمایش‌داده‌شده: ${priceLabel}`,
-      "لطفاً قیمت نهایی و موجودی را تأیید کنید.",
-    ].join("\n");
   }
 
   function getCurrentPage() {
@@ -85,24 +64,30 @@
           </nav>
           <div class="header-actions">
             <a class="header-phone" href="${phoneHref()}">${icons.phone}<span>مشاوره رایگان</span></a>
-            <a class="button button-primary button-compact" href="${whatsappHref()}" target="_blank" rel="noopener">
-              ${icons.whatsapp}<span>سفارش</span>
+            <a class="button button-primary button-compact" href="${phoneHref()}" aria-label="تماس مستقیم برای سفارش">
+              ${icons.phone}<span>تماس و سفارش</span>
             </a>
-            <button class="menu-toggle icon-button" type="button" aria-label="بازکردن منو" aria-expanded="false" aria-controls="mobile-nav">
-              ${icons.menu}
-            </button>
           </div>
         </div>
-        <nav class="mobile-nav" id="mobile-nav" aria-label="منوی موبایل" hidden>
-          <div class="mobile-nav-head">
-            <span>منوی دسترسی</span>
-            <button class="mobile-nav-close icon-button" type="button" aria-label="بستن منو">${icons.close}</button>
+        <nav class="mobile-quick-nav" aria-label="منوی اصلی موبایل">
+          <div class="mobile-quick-nav-track">
+            ${nav
+              .map(([href, label]) => {
+                const active =
+                  href === currentPage ||
+                  (currentPage === "product.html" && href === "products.html");
+                return `<a href="${href}"${active ? ' class="active" aria-current="page"' : ""}>${label}</a>`;
+              })
+              .join("")}
           </div>
-          ${nav.map(([href, label]) => `<a href="${href}">${label}<span aria-hidden="true">←</span></a>`).join("")}
-          <a class="button button-primary" href="${whatsappHref()}" target="_blank" rel="noopener">${icons.whatsapp}گفت‌وگو در واتساپ</a>
         </nav>
-        <button class="nav-backdrop" type="button" aria-label="بستن منو" hidden></button>
       </header>`;
+    const activeMobileLink = host.querySelector(".mobile-quick-nav a.active");
+    if (activeMobileLink) {
+      window.requestAnimationFrame(() => {
+        activeMobileLink.scrollIntoView({ block: "nearest", inline: "center" });
+      });
+    }
   }
 
   function renderFooter() {
@@ -133,7 +118,7 @@
           <div class="footer-contact">
             <h2>ارتباط با ما</h2>
             <a href="${phoneHref()}" dir="ltr">${config.phone}</a>
-            <a href="${whatsappHref()}" target="_blank" rel="noopener">پیام در واتساپ</a>
+            <a href="${phoneHref()}">تماس مستقیم با فروش</a>
             <address>${config.address}</address>
           </div>
         </div>
@@ -144,9 +129,9 @@
       </footer>
       <div class="mobile-contact-bar" aria-label="راه‌های تماس سریع">
         <a href="${phoneHref()}">${icons.phone}<span>تماس</span></a>
-        <a href="${whatsappHref()}" target="_blank" rel="noopener">${icons.whatsapp}<span>واتساپ</span></a>
+        <a href="${phoneHref()}">${icons.phone}<span>سفارش تلفنی</span></a>
       </div>
-      <a class="floating-whatsapp" href="${whatsappHref()}" target="_blank" rel="noopener" aria-label="سفارش در واتساپ">${icons.whatsapp}</a>
+      <a class="floating-call" href="${phoneHref()}" aria-label="تماس مستقیم با فروش">${icons.phone}</a>
       <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
       <dialog class="site-dialog" id="installment-dialog" aria-labelledby="installment-title">
         <button class="dialog-close icon-button" type="button" aria-label="بستن پنجره">${icons.close}</button>
@@ -160,30 +145,6 @@
         </ul>
         <a class="button button-primary button-block" href="${phoneHref()}">${icons.phone}تماس با فروش</a>
       </dialog>`;
-  }
-
-  function initNavigation() {
-    const toggle = document.querySelector(".menu-toggle");
-    const close = document.querySelector(".mobile-nav-close");
-    const nav = document.querySelector(".mobile-nav");
-    const backdrop = document.querySelector(".nav-backdrop");
-    if (!toggle || !nav || !backdrop) return;
-
-    function setOpen(open) {
-      toggle.setAttribute("aria-expanded", String(open));
-      nav.hidden = !open;
-      backdrop.hidden = !open;
-      document.body.classList.toggle("nav-open", open);
-      if (open) close.focus();
-      else toggle.focus();
-    }
-    toggle.addEventListener("click", () => setOpen(true));
-    close.addEventListener("click", () => setOpen(false));
-    backdrop.addEventListener("click", () => setOpen(false));
-    nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && !nav.hidden) setOpen(false);
-    });
   }
 
   function priceMarkup(priceData, compact) {
@@ -240,7 +201,7 @@
           <div class="sample-price-note">قیمت‌های نمایشی نمونه و غیرقطعی‌اند.</div>
           <div class="product-card-actions">
             <a class="button button-secondary" href="product.html?id=${product.id}&size=${encodeURIComponent(initialSize)}" data-detail-link>جزئیات ${icons.arrow}</a>
-            <a class="icon-button card-whatsapp" href="${whatsappHref(productOrderMessage(product, initialSize, "cash", product.prices[initialSize].cashPrice))}" target="_blank" rel="noopener" aria-label="سفارش ${product.name} در واتساپ">${icons.whatsapp}</a>
+            <a class="icon-button card-call" href="${phoneHref()}" aria-label="تماس مستقیم برای سفارش ${product.name}">${icons.phone}</a>
           </div>
         </div>
       </article>`;
@@ -251,14 +212,12 @@
       const product = products.find((item) => item.id === card.dataset.productCard);
       const select = card.querySelector("[data-card-size]");
       const detail = card.querySelector("[data-detail-link]");
-      const whatsapp = card.querySelector(".card-whatsapp");
       if (!product || !select) return;
       select.addEventListener("change", () => {
         const size = select.value;
         const price = product.prices[size];
         card.querySelector("[data-card-price]").innerHTML = priceMarkup(price, true);
         detail.href = `product.html?id=${product.id}&size=${encodeURIComponent(size)}`;
-        whatsapp.href = whatsappHref(productOrderMessage(product, size, "cash", price.cashPrice));
       });
     });
   }
@@ -401,42 +360,6 @@
         }
       });
     });
-
-    const form = document.querySelector("[data-consultation-form]");
-    if (!form) return;
-    const success = form.querySelector(".form-success");
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      let valid = true;
-      form.querySelectorAll("[required]").forEach((field) => {
-        const group = field.closest(".form-field");
-        let message = "";
-        if (!field.value.trim()) message = "تکمیل این فیلد ضروری است.";
-        if (field.name === "phone" && field.value.trim() && !/^09\d{9}$/.test(field.value.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d)))) {
-          message = "شماره موبایل را با ۰۹ و ۱۱ رقم وارد کنید.";
-        }
-        group.classList.toggle("invalid", Boolean(message));
-        group.querySelector(".field-error").textContent = message;
-        field.setAttribute("aria-invalid", String(Boolean(message)));
-        if (message) valid = false;
-      });
-      if (!valid) {
-        form.querySelector(".invalid input, .invalid textarea").focus();
-        return;
-      }
-      success.hidden = false;
-      success.focus();
-      form.reset();
-      showToast("درخواست شما با موفقیت ثبت شد.");
-    });
-    form.querySelectorAll("input, textarea").forEach((field) => {
-      field.addEventListener("input", () => {
-        const group = field.closest(".form-field");
-        group.classList.remove("invalid");
-        field.setAttribute("aria-invalid", "false");
-        group.querySelector(".field-error").textContent = "";
-      });
-    });
   }
 
   function initDialog() {
@@ -463,7 +386,11 @@
   function initReveal(scope) {
     const elements = (scope || document).querySelectorAll(".reveal:not(.is-visible)");
     if (!elements.length) return;
-    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      !("IntersectionObserver" in window) ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.matchMedia("(max-width: 680px)").matches
+    ) {
       elements.forEach((element) => element.classList.add("is-visible"));
       return;
     }
@@ -490,7 +417,7 @@
     });
     document.querySelectorAll("[data-address]").forEach((el) => (el.textContent = config.address));
     document.querySelectorAll("[data-working-hours]").forEach((el) => (el.textContent = config.workingHours));
-    document.querySelectorAll("[data-whatsapp-link]").forEach((el) => (el.href = whatsappHref()));
+    document.querySelectorAll("[data-call-link]").forEach((el) => (el.href = phoneHref()));
   }
 
   window.Storefront = {
@@ -501,8 +428,6 @@
     formatPrice,
     toFaNumber,
     phoneHref,
-    whatsappHref,
-    productOrderMessage,
     productCard,
     bindProductCards,
     showToast,
@@ -513,7 +438,6 @@
     renderHeader();
     renderFooter();
     hydrateConfigText();
-    initNavigation();
     renderFeaturedProducts();
     renderProductsPage();
     initSizeGuide();

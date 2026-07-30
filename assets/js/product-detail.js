@@ -91,8 +91,8 @@
           <div class="detail-price-panel" data-detail-price></div>
           <p class="price-disclaimer">این مبالغ داده نمونه و غیرقطعی‌اند؛ قیمت نهایی و موجودی پیش از سفارش تأیید می‌شود.</p>
           <div class="detail-actions">
-            <a class="button button-whatsapp" data-detail-whatsapp target="_blank" rel="noopener">${store.icons.whatsapp}سفارش در واتساپ</a>
-            <a class="button button-secondary" href="${store.phoneHref()}">${store.icons.phone}تماس با فروش</a>
+            <a class="button button-call" href="${store.phoneHref()}">${store.icons.phone}تماس برای سفارش</a>
+            <a class="button button-secondary" href="${store.phoneHref()}">${store.icons.phone}مشاوره تلفنی</a>
           </div>
         </section>
       </div>
@@ -162,10 +162,6 @@
           <div class="monthly-highlight"><span>مبلغ هر قسط</span><b>${store.formatPrice(price.monthlyInstallmentAmount)}</b></div>
           <small>آخرین به‌روزرسانی داده نمونه: ${price.updatedAt}</small>`;
       }
-      const chosenPrice = purchaseType === "cash" ? price.cashPrice : price.sixMonthInstallmentPrice;
-      root.querySelector("[data-detail-whatsapp]").href = store.whatsappHref(
-        store.productOrderMessage(product, selectedSize, purchaseType, chosenPrice),
-      );
       root.querySelector("[data-width-label]").textContent = `${store.toFaNumber(selectedSize.split("×")[1])} سانتی‌متر`;
       root.querySelector("[data-width-text]").textContent = store.toFaNumber(selectedSize.split("×")[1]);
       root.querySelectorAll("[data-price-row]").forEach((row) => row.classList.toggle("selected", row.dataset.priceRow === selectedSize));

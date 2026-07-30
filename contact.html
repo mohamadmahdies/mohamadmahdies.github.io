@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#102a43">
     <title>تماس و مشاوره خرید تشک | آرامیس</title>
-    <meta name="description" content="برای مشاوره انتخاب تشک، استعلام قیمت و ثبت سفارش با آرامیس تماس بگیرید یا در واتساپ پیام دهید.">
+    <meta name="description" content="برای مشاوره انتخاب تشک، استعلام قیمت و ثبت سفارش، مستقیم با بخش فروش آرامیس تماس بگیرید.">
     <meta property="og:title" content="تماس با آرامیس">
     <meta property="og:description" content="مشاوره انتخاب تشک و پاسخ‌گویی درباره قیمت و شرایط سفارش.">
     <meta property="og:type" content="website">
@@ -35,18 +35,17 @@
             <p>در ساعات کاری پاسخ‌گوی پرسش‌های مربوط به مدل‌ها، سایز، شرایط ضمانت و روش خرید هستیم.</p>
             <div class="contact-cards">
               <article class="contact-card">
-                <span class="contact-icon" aria-hidden="true">
+                <a class="contact-icon" data-call-link href="tel:09xxxxxxxxx" aria-label="تماس مستقیم با فروش">
                   <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.3.54 3.5.54a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.18 2.4.54 3.5a1 1 0 0 1-.24 1z"/></svg>
-                </span>
+                </a>
                 <div><small>شماره تماس</small><a data-phone href="tel:09xxxxxxxxx" dir="ltr">09xxxxxxxxx</a></div>
                 <button class="copy-button" type="button" data-copy-phone>کپی</button>
               </article>
               <article class="contact-card">
-                <span class="contact-icon whatsapp" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.5-1.7c1.7.9 3.5 1.4 5.4 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.2-3.4-8.4Z"/></svg>
-                </span>
-                <div><small>پاسخ سریع‌تر</small><a data-whatsapp-link target="_blank" rel="noopener">پیام در واتساپ</a></div>
-                <span class="online-dot">آنلاین</span>
+                <a class="contact-icon sales-call" data-call-link href="tel:09xxxxxxxxx" aria-label="تماس برای سفارش">
+                  <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.3.54 3.5.54a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.18 2.4.54 3.5a1 1 0 0 1-.24 1z"/></svg>
+                </a>
+                <div><small>ثبت سفارش تلفنی</small><a data-call-link href="tel:09xxxxxxxxx">تماس مستقیم با بخش فروش</a></div>
               </article>
               <article class="contact-card">
                 <span class="contact-icon" aria-hidden="true">
@@ -63,43 +62,6 @@
             </div>
           </div>
 
-          <div class="consultation-card reveal">
-            <span class="eyebrow">مشاوره رایگان</span>
-            <h2>درخواست تماس</h2>
-            <p>اطلاعات زیر را وارد کنید تا در ساعات کاری با شما تماس گرفته شود.</p>
-            <form data-consultation-form novalidate>
-              <div class="form-row">
-                <div class="form-field">
-                  <label for="full-name">نام و نام خانوادگی</label>
-                  <input id="full-name" name="name" type="text" autocomplete="name" placeholder="مثلاً مهدی رضایی" required>
-                  <small class="field-error"></small>
-                </div>
-                <div class="form-field">
-                  <label for="mobile">شماره موبایل</label>
-                  <input id="mobile" name="phone" type="tel" inputmode="numeric" autocomplete="tel" dir="ltr" placeholder="09123456789" required>
-                  <small class="field-error"></small>
-                </div>
-              </div>
-              <div class="form-field">
-                <label for="contact-topic">موضوع مشاوره</label>
-                <select id="contact-topic" name="topic">
-                  <option>انتخاب مدل مناسب</option>
-                  <option>راهنمای انتخاب سایز</option>
-                  <option>استعلام قیمت و موجودی</option>
-                  <option>شرایط خرید اقساطی</option>
-                  <option>خدمات پس از فروش</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label for="message">توضیحات <span>(اختیاری)</span></label>
-                <textarea id="message" name="message" rows="4" placeholder="اگر مدل یا سایز خاصی مدنظر دارید بنویسید."></textarea>
-                <small class="field-error"></small>
-              </div>
-              <button class="button button-primary button-block" type="submit">ثبت درخواست مشاوره <span aria-hidden="true">←</span></button>
-              <p class="form-privacy">با ثبت این فرم، فقط برای پاسخ به درخواست شما تماس گرفته می‌شود.</p>
-              <div class="form-success" role="status" tabindex="-1" hidden><strong>درخواست شما ثبت شد.</strong><span>این نسخه نمایشی است؛ برای ارتباط واقعی از تماس یا واتساپ استفاده کنید.</span></div>
-            </form>
-          </div>
         </div>
       </section>
 
