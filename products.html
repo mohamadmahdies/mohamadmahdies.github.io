@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#102a43">
+    <title>محصولات و قیمت تشک | آرامیس</title>
+    <meta name="description" content="مشاهده و مقایسه مدل‌های تشک طبی و راحتی بر اساس سایز و قیمت نمونه نقدی و اقساطی.">
+    <meta property="og:title" content="محصولات تشک آرامیس">
+    <meta property="og:description" content="مدل، سایز و شرایط خرید تشک‌ها را ساده مقایسه کنید.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/super-medical.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <script defer src="assets/js/products.js"></script>
+    <script defer src="assets/js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
+    <div data-site-header></div>
+    <main id="main-content">
+      <section class="page-hero products-hero">
+        <div class="container page-hero-inner">
+          <nav class="breadcrumbs" aria-label="مسیر صفحه"><a href="index.html">خانه</a><span>/</span><span aria-current="page">محصولات</span></nav>
+          <span class="eyebrow">انتخاب برای هر سبک خواب</span>
+          <h1>تشک مناسب خودتان را پیدا کنید</h1>
+          <p>مدل‌ها را فیلتر کنید، سایز را تغییر دهید و قیمت نمونه نقدی و اقساطی را بدون بارگذاری دوباره صفحه مقایسه کنید.</p>
+        </div>
+      </section>
+
+      <section class="section catalog-section">
+        <div class="container">
+          <div class="catalog-toolbar">
+            <div class="filter-group" aria-label="فیلتر نوع محصول">
+              <span>نوع تشک:</span>
+              <button type="button" class="active" data-filter="all" aria-pressed="true">همه</button>
+              <button type="button" data-filter="medical" aria-pressed="false">طبی</button>
+              <button type="button" data-filter="hybrid" aria-pressed="false">طبی و راحتی</button>
+            </div>
+            <div class="sort-group">
+              <label for="sort-products">مرتب‌سازی:</label>
+              <select id="sort-products" data-sort>
+                <option value="default">پیشنهاد آرامیس</option>
+                <option value="low">کمترین قیمت</option>
+                <option value="high">بیشترین قیمت</option>
+              </select>
+            </div>
+          </div>
+          <div class="catalog-summary">
+            <span data-product-count>۳ محصول</span>
+            <p><i></i> قیمت‌ها نمونه و غیرقطعی هستند.</p>
+          </div>
+          <div class="products-grid catalog-grid" data-products-grid>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="compact-cta">
+        <div class="container compact-cta-inner reveal">
+          <div><span class="eyebrow light">نیاز به راهنمایی دارید؟</span><h2>انتخاب بین مدل‌ها را به ما بسپارید</h2></div>
+          <div class="cta-actions">
+            <a class="button button-light" data-whatsapp-link target="_blank" rel="noopener">گفت‌وگو در واتساپ</a>
+            <a class="button button-outline-light" href="index.html#size-guide">راهنمای سایز</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div data-site-footer></div>
+  </body>
+</html>
